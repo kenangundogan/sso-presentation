@@ -25,7 +25,7 @@ const PHASES: Phase[] = [
     days: "2. HAFTA",
     items: [
       "Modern web framework (Next.js) SDK entegrasyonu",
-      "Pilot projeler: Haber ve Radyo portalları",
+      "Pilot projeler: Web portalları ve içerik siteleri",
       "Merkezi içerik yönetim sistemleri (CMS) uyumu",
       "SSO akışlarının kullanıcı tarafında test edilmesi",
     ],
@@ -47,7 +47,7 @@ const PHASES: Phase[] = [
     days: "4. HAFTA",
     items: [
       "KVKK onay metinleri ve açık rıza akış yönetimi",
-      "Smart TV (Samsung, Apple, LG) entegrasyonları",
+      "Smart TV (Samsung Tizen, LG WebOS, Android TV, Apple tvOS) entegrasyonları",
       "Kullanıcı verisi ihraç ve silme API desteği",
       "Performans testleri ve canlı sisteme geçiş",
     ],

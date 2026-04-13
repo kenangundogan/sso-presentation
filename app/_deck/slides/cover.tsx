@@ -5,7 +5,7 @@ import { Typography } from "../components/typography";
 import type { SlideProps } from "../types";
 
 const TAGLINES = [
-  "Tek kayıt, tüm mecralar.",
+  "Tek kayıt, tüm uygulamalar.",
   "OAuth 2.1 / OIDC tabanlı kimlik altyapısı.",
   "Self-hosted — veriler kendi sunucularınızda kalır.",
   "KVKK uyumlu, vendor lock-in yok.",

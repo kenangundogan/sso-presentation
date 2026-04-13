@@ -30,7 +30,7 @@ const FRAMEWORKS: Framework[] = [
   {
     name: "Authentik",
     stack: "Python · Go",
-    license: "CC BY-SA 4.0",
+    license: "MIT + EE",
     release: "2026.2.3-rc1",
     releaseDate: "10 Şub 2026",
     website: "https://goauthentik.io/",
@@ -58,6 +58,16 @@ const FRAMEWORKS: Framework[] = [
     openSource: true,
   },
   {
+    name: "SuperTokens",
+    stack: "Java · çok dilli SDK",
+    license: "Apache-2.0 + EE",
+    release: "v11.4.3",
+    releaseDate: "8 Şub 2026",
+    website: "https://supertokens.com/",
+    repo: "https://github.com/supertokens/supertokens-core",
+    openSource: true,
+  },
+  {
     name: "Casdoor",
     stack: "Go · React",
     license: "Apache-2.0",
@@ -65,16 +75,6 @@ const FRAMEWORKS: Framework[] = [
     releaseDate: "13 Şub 2026",
     website: "https://casdoor.ai/",
     repo: "https://github.com/casdoor/casdoor",
-    openSource: true,
-  },
-  {
-    name: "SuperTokens",
-    stack: "Java · çok dilli SDK",
-    license: "Apache-2.0",
-    release: "v11.4.3",
-    releaseDate: "8 Şub 2026",
-    website: "https://supertokens.com/",
-    repo: "https://github.com/supertokens/supertokens-core",
     openSource: true,
   },
 ];
@@ -125,9 +125,7 @@ export default function FrameworkOverviewSlide(p: SlideProps) {
                 <DescriptionList.Item>
                   <DescriptionList.Item.Key>Güncelleme</DescriptionList.Item.Key>
                   <DescriptionList.Item.Value>
-                    <Typography >
-                      {f.releaseDate}
-                    </Typography>
+                    <Typography>{f.releaseDate}</Typography>
                   </DescriptionList.Item.Value>
                 </DescriptionList.Item>
                 <DescriptionList.Item>

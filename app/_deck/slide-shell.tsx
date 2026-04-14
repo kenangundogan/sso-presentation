@@ -51,7 +51,7 @@ export function SlideShell({
           viewportClassName="h-full pb-24"
         >
           <div className="flex flex-col gap-2 sm:gap-3">
-            <h2 className="text-[1.75rem] font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
               {title}
             </h2>
             {subtitle ? (

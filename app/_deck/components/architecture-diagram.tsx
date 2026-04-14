@@ -69,14 +69,14 @@ function DiagramNode({
   if (type === "leaf") {
     return (
       <Card className={cn("flex flex-col gap-1 p-3 sm:p-4", className)}>
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/50 sm:text-[11px]">
+        <span className="font-mono text-xs uppercase tracking-[0.2em] text-black/50 sm:text-xs">
           {label}
         </span>
         <Typography size="base" weight="semibold" as="h5" className="leading-tight">
           {title}
         </Typography>
         {meta && (
-          <span className="font-mono text-[10px] leading-snug text-black/60 sm:text-[11px]">
+          <span className="font-mono text-xs leading-snug text-black/60 sm:text-xs">
             {meta}
           </span>
         )}
@@ -91,7 +91,7 @@ function DiagramNode({
           {label}
         </Card.Header.Left>
         {subtitle && (
-          <Card.Header.Right className="font-mono text-[11px] opacity-70">
+          <Card.Header.Right className="font-mono text-xs opacity-70">
             {subtitle}
           </Card.Header.Right>
         )}
@@ -106,7 +106,7 @@ function DiagramNode({
               <Badge
                 key={f}
                 tone={tone === "invert" ? "invert" : "subtle"}
-                className="px-2 py-0.5 text-[10px] sm:text-[11px]"
+                className="px-2 py-0.5 text-xs sm:text-xs"
               >
                 {f}
               </Badge>
@@ -124,7 +124,7 @@ function DiagramConnector({ text, className }: { text?: string; className?: stri
       <div className="h-4 w-px bg-black/30 sm:h-6" />
       {text ? (
         <>
-          <div className="my-1 rounded-full border border-black/10 bg-black/[0.03] px-3 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-black/60 sm:text-[11px]">
+          <div className="my-1 rounded-full border border-black/10 bg-black/[0.03] px-3 py-0.5 font-mono text-xs uppercase tracking-[0.15em] text-black/60 sm:text-xs">
             {text}
           </div>
           <div className="h-2 w-px bg-black/30 sm:h-3" />

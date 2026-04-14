@@ -48,7 +48,7 @@ export default function ThanksSlide(p: SlideProps) {
       {/* Center stage */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 sm:px-10 md:px-16">
         <h1 className="text-center font-semibold leading-[0.85] tracking-[-0.04em]">
-          <span className="block text-[clamp(3rem,12vw,9rem)]">
+          <span className="block text-5xl md:text-9xl">
             Teşekkürler<span className="text-black/15">.</span>
           </span>
         </h1>

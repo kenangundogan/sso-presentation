@@ -34,8 +34,8 @@ export interface TypographyProps {
  * ---------------------------------------------------------------- */
 
 const SIZES: Record<TypographySize, string> = {
-  xs: "text-[10px]",
-  sm: "text-[11px] sm:text-xs",
+  xs: "text-xs",
+  sm: "text-xs sm:text-xs",
   base: "text-xs sm:text-sm",
   md: "text-sm sm:text-base",
   lg: "text-base sm:text-lg",

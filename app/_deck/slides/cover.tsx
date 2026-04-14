@@ -30,17 +30,17 @@ function ScreenLogin() {
       </div>
       <div className="mb-3 flex items-center gap-2">
         <span className="h-px flex-1 bg-black/10" />
-        <span className="font-mono text-[10px] text-black/30">veya</span>
+        <span className="font-mono text-xs text-black/30">veya</span>
         <span className="h-px flex-1 bg-black/10" />
       </div>
       <div className="flex gap-2">
         <div className="flex flex-1 items-center justify-center gap-1 rounded border border-black/15 py-1.5">
           <Globe className="h-3 w-3 text-black/40" strokeWidth={1.75} />
-          <span className="font-mono text-[10px] font-medium">Google</span>
+          <span className="font-mono text-xs font-medium">Google</span>
         </div>
         <div className="flex flex-1 items-center justify-center gap-1 rounded border border-black/15 py-1.5">
           <Globe className="h-3 w-3 text-black/40" strokeWidth={1.75} />
-          <span className="font-mono text-[10px] font-medium">Apple</span>
+          <span className="font-mono text-xs font-medium">Apple</span>
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@ function ScreenConsent() {
       </div>
       <div className="mb-3 rounded border border-black/10 bg-black/[0.02] px-3 py-2.5">
         <span className="text-xs font-semibold">Partner Uygulama</span>
-        <span className="ml-1 text-[10px] text-black/40">erişim istiyor</span>
+        <span className="ml-1 text-xs text-black/40">erişim istiyor</span>
       </div>
       <ul className="mb-4 space-y-1.5">
         {["Profil bilgileriniz", "E-posta adresiniz", "Abonelik durumunuz"].map((p) => (
@@ -115,21 +115,21 @@ function ScreenProfile() {
         </div>
         <div>
           <div className="text-sm font-semibold">Kenan G.</div>
-          <div className="font-mono text-[10px] text-black/40">kenan@ornek.com</div>
+          <div className="font-mono text-xs text-black/40">kenan@ornek.com</div>
         </div>
       </div>
       <div className="space-y-1.5 border-t border-black/10 pt-3">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-black/50">Bağlı uygulamalar</span>
-          <span className="font-mono text-[10px] font-bold">4</span>
+          <span className="text-xs text-black/50">Bağlı uygulamalar</span>
+          <span className="font-mono text-xs font-bold">4</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-black/50">Aktif oturumlar</span>
-          <span className="font-mono text-[10px] font-bold">2</span>
+          <span className="text-xs text-black/50">Aktif oturumlar</span>
+          <span className="font-mono text-xs font-bold">2</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-black/50">MFA durumu</span>
-          <span className="font-mono text-[10px] font-bold text-black">Aktif</span>
+          <span className="text-xs text-black/50">MFA durumu</span>
+          <span className="font-mono text-xs font-bold text-black">Aktif</span>
         </div>
       </div>
     </div>
@@ -171,7 +171,7 @@ function ScreenPlatforms() {
           </div>
           <div className="flex-1">
             <div className="text-xs font-medium">{label}</div>
-            <div className="font-mono text-[10px] text-black/40">{status}</div>
+            <div className="font-mono text-xs text-black/40">{status}</div>
           </div>
           <span className="h-1.5 w-1.5 rounded-full bg-black/30" />
         </div>
@@ -266,10 +266,10 @@ export default function CoverSlide(_p: SlideProps) {
         {/* Left — Title area */}
         <div className="flex flex-col justify-center px-5 py-10 sm:px-10 sm:py-12 md:px-16 md:py-16 lg:flex-1">
           <h1 className="font-semibold leading-[0.85] tracking-[-0.04em]">
-            <span className="block text-[clamp(2.5rem,10vw,7.5rem)]">
+            <span className="block text-5xl md:text-9xl">
               Ortak Üyelik
             </span>
-            <span className="block text-[clamp(2.5rem,10vw,7.5rem)]">
+            <span className="block text-5xl md:text-9xl">
               Sistemi<span className="text-black/15">.</span>
             </span>
           </h1>

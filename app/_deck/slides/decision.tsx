@@ -1,8 +1,9 @@
+import { AnalysisVerdict } from "../components/analysis-verdict";
 import { Table } from "../components/table";
 import { SlideShell } from "../slide-shell";
 import { Typography } from "../components/typography";
 import { FRAMEWORKS, type Framework, type FrameworkId, type Field } from "../data/frameworks";
-import { SLIDE_HEADERS } from "../data/slides";
+import { SLIDE_HEADERS, SCORE_EXPLANATION } from "../data/slides";
 import type { SlideProps } from "../types";
 
 type Row = { label: string } & Record<FrameworkId, string>;
@@ -36,6 +37,11 @@ const COMPARISON_DATA: ReadonlyArray<Row> = [
 
   row((fw) => fw.comparison.sdkCount),
   row((fw) => fw.comparison.setupDifficulty),
+
+  row((fw) => fw.comparison.mfaMethods),
+  row((fw) => fw.comparison.rbacModel),
+  row((fw) => fw.comparison.socialCount),
+  row((fw) => fw.comparison.omniModel),
 
   row((fw) => fw.meta.score),
 ];
@@ -81,6 +87,15 @@ export default function DecisionSlide(p: SlideProps) {
           ))}
         </Table.Body>
       </Table>
+
+      <AnalysisVerdict>
+        <AnalysisVerdict.Result label="Puanlama Metodolojisi">
+          {SCORE_EXPLANATION.verdict}
+        </AnalysisVerdict.Result>
+        <AnalysisVerdict.Warning>
+          {SCORE_EXPLANATION.warn}
+        </AnalysisVerdict.Warning>
+      </AnalysisVerdict>
     </SlideShell>
   );
 }

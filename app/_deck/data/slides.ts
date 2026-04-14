@@ -79,6 +79,11 @@ export const SLIDE_HEADERS = {
   },
 } as const satisfies Record<string, SlideHeader>;
 
+export const SCORE_EXPLANATION = {
+  verdict: "Puan, 10 somut kriterin var/yok kontrolüyle hesaplanır: OAuth/OIDC · SAML 2.0 · LDAP · SCIM 2.0 · MFA/Passkey · SDK (Next.js/TS uyumlu) · Yerleşik Multi-tenancy · Bağımsız Güvenlik Denetimi/Sertifika · Self-hosted + Managed Cloud · AI/MCP Entegrasyonu. Her ✓ = 1 puan.",
+  warn: "Puanlama yalnızca özellik varlığını ölçer — özellik kalitesi, topluluk büyüklüğü, güvenlik geçmişi ve ekosistem olgunluğu gibi nitel faktörler framework detay kartlarında ayrıca değerlendirilmiştir.",
+} as const;
+
 /* ================================================================ *
  * what-is-sso
  * ================================================================ */

@@ -33,6 +33,10 @@ const FACT_FIELDS: ReadonlyArray<(fw: Framework) => Field<string | number>> = [
   (fw) => fw.comparison.apiStyle,
   (fw) => fw.comparison.sdkCount,
   (fw) => fw.comparison.setupDifficulty,
+  (fw) => fw.comparison.mfaMethods,
+  (fw) => fw.comparison.rbacModel,
+  (fw) => fw.comparison.socialCount,
+  (fw) => fw.comparison.omniModel,
 ];
 
 function SpecSheet({ fw }: { fw: Framework }) {

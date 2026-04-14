@@ -37,6 +37,8 @@ const FACT_FIELDS: ReadonlyArray<(fw: Framework) => Field<string | number>> = [
   (fw) => fw.comparison.rbacModel,
   (fw) => fw.comparison.socialCount,
   (fw) => fw.comparison.omniModel,
+  (fw) => fw.comparison.database,
+  (fw) => fw.comparison.i18nCount,
 ];
 
 function SpecSheet({ fw }: { fw: Framework }) {

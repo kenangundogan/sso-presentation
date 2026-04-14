@@ -43,6 +43,9 @@ const COMPARISON_DATA: ReadonlyArray<Row> = [
   row((fw) => fw.comparison.socialCount),
   row((fw) => fw.comparison.omniModel),
 
+  row((fw) => fw.comparison.database),
+  row((fw) => fw.comparison.i18nCount),
+
   row((fw) => fw.meta.score),
 ];
 

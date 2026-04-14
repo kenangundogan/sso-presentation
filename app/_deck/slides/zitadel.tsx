@@ -11,7 +11,7 @@ export default function ZitadelSlide(p: SlideProps) {
       stack="Go · PostgreSQL"
       version="v4.13.1 (Nis 2026)"
       license="AGPL-3.0 (MIT/Apache istisnalarla)"
-      score={4}
+      score={9}
       website="https://zitadel.com/"
       repo="https://github.com/zitadel/zitadel"
       strengths={[

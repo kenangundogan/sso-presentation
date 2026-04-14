@@ -11,7 +11,7 @@ export default function SuperTokensSlide(p: SlideProps) {
       stack="Java (core) · Backend + Frontend SDK"
       version="v11.4.3 (Şub 2026)"
       license="Apache 2.0 + ee/ (Enterprise)"
-      score={3}
+      score={6}
       website="https://supertokens.com/"
       repo="https://github.com/supertokens/supertokens-core"
       strengths={[

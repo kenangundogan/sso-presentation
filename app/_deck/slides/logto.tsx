@@ -11,7 +11,7 @@ export default function LogtoSlide(p: SlideProps) {
       stack="TypeScript · Node.js · PostgreSQL"
       version="v1.38.0 (Mar 2026)"
       license="MPL 2.0"
-      score={5}
+      score={8}
       website="https://logto.io/"
       repo="https://github.com/logto-io/logto"
       strengths={[

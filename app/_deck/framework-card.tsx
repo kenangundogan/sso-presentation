@@ -13,7 +13,7 @@ export type FrameworkCardProps = {
   stack: string;
   version: string;
   license: string;
-  /** Filled-star count out of 5 (e.g. 4 → ★★★★☆). */
+  /** Overall fitness score out of 10 (e.g. 8 → "8/10"). */
   score: number;
   selected?: boolean;
   /** Marketing site URL — rendered as a "Site" link badge. */
@@ -28,16 +28,11 @@ export type FrameworkCardProps = {
 
 function ScorePill({ value }: { value: number }) {
   return (
-    <span className="inline-flex items-center gap-0.5 rounded-full bg-black px-2.5 py-1 sm:px-3">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className="h-3 w-3"
-          strokeWidth={1.5}
-          fill={i < value ? "white" : "transparent"}
-          stroke="white"
-        />
-      ))}
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-black px-2.5 py-1 sm:px-3">
+      <Star className="h-3 w-3" strokeWidth={1.5} fill="white" stroke="white" />
+      <span className="font-mono text-xs font-bold tabular-nums text-white">
+        {value}/10
+      </span>
     </span>
   );
 }

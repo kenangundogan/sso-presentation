@@ -48,19 +48,19 @@ const DIAGRAM_PLAN: readonly DiagramStep[] = [
       {
         type: "leaf",
         label: "Sosyal Sağlayıcılar",
-        title: "29+ IdP",
+        title: "Social IdP (29+)",
         meta: "Google · Apple · GitHub · Microsoft +25",
       },
       {
         type: "leaf",
-        label: "Kurumsal SSO",
-        title: "OIDC · SAML",
+        label: "Kurumsal Giriş",
+        title: "Enterprise SSO",
         meta: "Microsoft Entra ID · Google Workspace · Okta",
       },
       {
         type: "leaf",
-        label: "Passwordless & Biyometrik",
-        title: "Passkey · WebAuthn",
+        label: "Şifresiz & Biyometrik",
+        title: "Passwordless · WebAuthn",
         meta: "E-posta · SMS · Magic Link · TOTP",
       },
     ],
@@ -71,7 +71,7 @@ const DIAGRAM_PLAN: readonly DiagramStep[] = [
     type: "node",
     node: {
       type: "hub",
-      label: "Identity Provider",
+      label: "Kimlik Sağlayıcı",
       title: "Logto IdP",
       subtitle: "auth.domain.com",
       features: ["OAuth 2.1", "OIDC", "JWT Issuer", "MFA · Passkey"],
@@ -84,7 +84,7 @@ const DIAGRAM_PLAN: readonly DiagramStep[] = [
     node: {
       type: "hub",
       label: "Doğrulama Katmanı",
-      title: "Token Doğrulama",
+      title: "Token Validation",
       subtitle: "Self-hosted",
       features: ["Middleware / SDK", "Veri Tabanı", "Yerel Veri Merkezi"],
     },
@@ -96,10 +96,10 @@ const DIAGRAM_PLAN: readonly DiagramStep[] = [
     cols: 4,
     className: "grid-cols-2 md:grid-cols-4",
     items: [
-      { type: "leaf", label: "İstemci", title: "Web Portalları", meta: "İçerik & Yönetim Portalları" },
-      { type: "leaf", label: "İstemci", title: "Mobil Uygulamalar", meta: "iOS ve Android App" },
-      { type: "leaf", label: "İstemci", title: "Smart TV Sistemleri", meta: "Tizen, tvOS, Android TV, WebOS, vb." },
-      { type: "leaf", label: "İstemci", title: "Yönetim Panelleri", meta: "CMS ve CRM Sistemleri" },
+      { type: "leaf", label: "İstemci", title: "Web Portals", meta: "İçerik & Yönetim Portalları" },
+      { type: "leaf", label: "İstemci", title: "Mobile Apps", meta: "iOS & Android" },
+      { type: "leaf", label: "İstemci", title: "Smart TV", meta: "Tizen · tvOS · Android TV · WebOS" },
+      { type: "leaf", label: "İstemci", title: "Admin Panels", meta: "CMS & CRM" },
     ],
   },
 ];

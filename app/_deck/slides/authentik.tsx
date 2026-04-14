@@ -11,7 +11,7 @@ export default function AuthentikSlide(p: SlideProps) {
       stack="Python · Django · Go"
       version="2026.2.3-rc1 (Şub 2026)"
       license="MIT + CC BY-SA 4.0 + EE"
-      score={4}
+      score={8}
       website="https://goauthentik.io/"
       repo="https://github.com/goauthentik/authentik"
       strengths={[

@@ -11,7 +11,7 @@ export default function KeycloakSlide(p: SlideProps) {
       stack="Java · Quarkus"
       version="26.6.0 (May 2026)"
       license="Apache 2.0"
-      score={4}
+      score={8}
       website="https://www.keycloak.org/"
       repo="https://github.com/keycloak/keycloak"
       strengths={[

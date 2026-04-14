@@ -13,6 +13,8 @@ type Framework = {
   releaseDate: string;
   website: string;
   repo: string;
+  stars: string;
+  contributors: string;
   openSource: boolean;
 };
 
@@ -25,6 +27,8 @@ const FRAMEWORKS: Framework[] = [
     releaseDate: "5 May 2026",
     website: "https://www.keycloak.org/",
     repo: "https://github.com/keycloak/keycloak",
+    stars: "33.9k",
+    contributors: "1500+",
     openSource: true,
   },
   {
@@ -35,6 +39,8 @@ const FRAMEWORKS: Framework[] = [
     releaseDate: "10 Şub 2026",
     website: "https://goauthentik.io/",
     repo: "https://github.com/goauthentik/authentik",
+    stars: "21.0k",
+    contributors: "530+",
     openSource: true,
   },
   {
@@ -45,6 +51,8 @@ const FRAMEWORKS: Framework[] = [
     releaseDate: "1 Nis 2026",
     website: "https://zitadel.com/",
     repo: "https://github.com/zitadel/zitadel",
+    stars: "13.5k",
+    contributors: "260+",
     openSource: true,
   },
   {
@@ -55,6 +63,8 @@ const FRAMEWORKS: Framework[] = [
     releaseDate: "31 Mar 2026",
     website: "https://logto.io/",
     repo: "https://github.com/logto-io/logto",
+    stars: "11.9k",
+    contributors: "94+",
     openSource: true,
   },
   {
@@ -65,6 +75,8 @@ const FRAMEWORKS: Framework[] = [
     releaseDate: "8 Şub 2026",
     website: "https://supertokens.com/",
     repo: "https://github.com/supertokens/supertokens-core",
+    stars: "15.0k",
+    contributors: "32+",
     openSource: true,
   },
   {
@@ -75,6 +87,8 @@ const FRAMEWORKS: Framework[] = [
     releaseDate: "13 Şub 2026",
     website: "https://casdoor.ai/",
     repo: "https://github.com/casdoor/casdoor",
+    stars: "13.3k",
+    contributors: "284+",
     openSource: true,
   },
 ];
@@ -88,7 +102,7 @@ export default function FrameworkOverviewSlide(p: SlideProps) {
       title="Açık Kaynak Çözümler"
       subtitle="Kendi sunucularımızda barındırabileceğimiz popüler kimlik yönetimi (IAM) çözümlerinin teknoloji, güncellik ve lisans bazlı karşılaştırması."
     >
-      <div className="grid flex-1 grid-cols-1 gap-4 overflow-y-auto sm:grid-cols-2 lg:grid-cols-3 pb-8">
+      <div className="grid flex-1 grid-cols-1 gap-4 overflow-y-auto pb-8 sm:grid-cols-2 lg:grid-cols-3">
         {FRAMEWORKS.map((f, i) => (
           <Card key={f.name} className="h-full">
             <Card.Header divider={true}>
@@ -111,6 +125,22 @@ export default function FrameworkOverviewSlide(p: SlideProps) {
                   <DescriptionList.Item.Value>
                     <Typography font="mono" emphasis="default">
                       {f.stack}
+                    </Typography>
+                  </DescriptionList.Item.Value>
+                </DescriptionList.Item>
+                <DescriptionList.Item>
+                  <DescriptionList.Item.Key>GitHub Stars</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Value>
+                    <Typography font="mono" weight="bold">
+                      {f.stars}
+                    </Typography>
+                  </DescriptionList.Item.Value>
+                </DescriptionList.Item>
+                <DescriptionList.Item>
+                  <DescriptionList.Item.Key>Contributor Sayısı</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Value>
+                    <Typography font="mono" weight="bold">
+                      {f.contributors}
                     </Typography>
                   </DescriptionList.Item.Value>
                 </DescriptionList.Item>

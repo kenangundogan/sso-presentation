@@ -11,7 +11,7 @@ export default function CasdoorSlide(p: SlideProps) {
       stack="Go · React"
       version="v3.13.0 (Şub 2026)"
       license="Apache 2.0"
-      score={3}
+      score={8}
       website="https://casdoor.ai/"
       repo="https://github.com/casdoor/casdoor"
       strengths={[

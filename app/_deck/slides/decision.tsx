@@ -50,7 +50,7 @@ const COMPARISON_DATA: ReadonlyArray<Row> = [
   { kriter: "LDAP Federation", keycloak: "Yerleşik", authentik: "Outpost", zitadel: "Var", logto: "Sınırlı", supertokens: "Yok", casdoor: "Server + Client" },
   { kriter: "RADIUS Protokolü", keycloak: "Yok", authentik: "Outpost", zitadel: "Yok", logto: "Yok", supertokens: "Yok", casdoor: "Server" },
   { kriter: "SAML 2.0", keycloak: "Yerleşik", authentik: "Yerleşik", zitadel: "Yerleşik", logto: "Yerleşik", supertokens: "v11.3+", casdoor: "Yerleşik" },
-  { kriter: "AI / MCP Entegresi", keycloak: "Partial", authentik: "Yok", zitadel: "Yok", logto: "Hazır", supertokens: "Yok", casdoor: "Hazır + A2A" },
+  { kriter: "AI / MCP Entegresi", keycloak: "Partial", authentik: "Yok", zitadel: "Yok", logto: "Var", supertokens: "Yok", casdoor: "Var + A2A" },
 
   // ── Multi-tenant & Operasyon ──────────────
   { kriter: "Çoklu Kurum Yapısı", keycloak: "Realm", authentik: "Policy", zitadel: "Instance → Org → Project", logto: "Organizations", supertokens: "App + Tenant", casdoor: "Organization" },
@@ -58,8 +58,11 @@ const COMPARISON_DATA: ReadonlyArray<Row> = [
   { kriter: "Yönetim Arayüzü", keycloak: "Karmaşık", authentik: "Flow editor", zitadel: "Modern", logto: "Çok Başarılı", supertokens: "Sade dashboard", casdoor: "Yoğun (dense)" },
 
   // ── Geliştirici Deneyimi ──────────────────
-  { kriter: "Resmi SDK Sayısı", keycloak: "4", authentik: "—", zitadel: "5", logto: "30+", supertokens: "7", casdoor: "18+" },
+  { kriter: "Resmi SDK Sayısı", keycloak: "6", authentik: "—", zitadel: "5", logto: "30+", supertokens: "7", casdoor: "18+" },
   { kriter: "Kurulum Zorluğu", keycloak: "Zor", authentik: "Orta", zitadel: "Kolay", logto: "Çok Kolay", supertokens: "Orta (3-parça)", casdoor: "Kolay (tek binary)" },
+
+  // ── Genel Puan (10 kriter: OAuth/OIDC, SAML, LDAP, SCIM, MFA, SDK, Multi-tenancy, Güvenlik Kanıtı, Cloud, MCP)
+  { kriter: "Puan (10 üzerinden)", keycloak: "8", authentik: "8", zitadel: "9", logto: "8", supertokens: "6", casdoor: "8" },
 ];
 
 export default function DecisionSlide(p: SlideProps) {

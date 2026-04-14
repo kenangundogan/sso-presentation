@@ -5,7 +5,7 @@ import type { SlideProps } from "../types";
 
 const BULLETS = [
   "Açık Kaynak (MPL 2.0) — Sıfır lisans maliyeti ve özgür altyapı",
-  "4 Hafta İçinde Canlıya Geçiş — Hızlı ve standartlaştırılmış süreç",
+  "8 Haftalık Uygulama Planı — Analiz · Tasarım · Kurulum · Entegrasyon · Test · Canlıya Geçiş",
   "KVKK & Yerel Veri Uyumu — Tüm veriler kendi sunucularımızda",
   "Geniş Kimlik Kaynağı — 29+ sosyal sağlayıcı · E-posta · SMS · Passkey · Enterprise SSO",
   "Bütünleşik Deneyim — Web, Mobil ve Smart TV'de tekil kimlik",

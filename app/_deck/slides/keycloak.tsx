@@ -9,7 +9,7 @@ export default function KeycloakSlide(p: SlideProps) {
       kicker="03 · Framework · 1/6"
       name="Keycloak"
       stack="Java · Quarkus"
-      version="26.6.0 (May 2026)"
+      version="26.6.0 (Nisan 2026)"
       license="Apache 2.0"
       score={8}
       website="https://www.keycloak.org/"

@@ -79,7 +79,7 @@ function ScreenConsent() {
         <span className="font-mono text-xs font-bold uppercase tracking-[0.2em]">Erişim İzni</span>
       </div>
       <div className="mb-3 rounded border border-black/10 bg-black/[0.02] px-3 py-2.5">
-        <span className="text-xs font-semibold">Haber Portalı</span>
+        <span className="text-xs font-semibold">Partner Uygulama</span>
         <span className="ml-1 text-[10px] text-black/40">erişim istiyor</span>
       </div>
       <ul className="mb-4 space-y-1.5">

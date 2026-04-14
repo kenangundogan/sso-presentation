@@ -73,7 +73,7 @@ function TableRoot({
     <div
       data-embla-no-drag
       className={cn(
-        "flex-1 overflow-x-auto rounded border border-black touch-pan-x",
+        "flex-1 overflow-x-auto border border-black touch-pan-x",
         className,
       )}
     >

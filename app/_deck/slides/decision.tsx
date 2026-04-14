@@ -58,6 +58,7 @@ const COMPARISON_DATA: ReadonlyArray<Row> = [
   { kriter: "Yönetim Arayüzü", keycloak: "Karmaşık", authentik: "Flow editor", zitadel: "Modern", logto: "Çok Başarılı", supertokens: "Sade dashboard", casdoor: "Yoğun (dense)" },
 
   // ── Geliştirici Deneyimi ──────────────────
+  { kriter: "Resmi SDK Sayısı", keycloak: "4", authentik: "—", zitadel: "5", logto: "30+", supertokens: "7", casdoor: "18+" },
   { kriter: "Kurulum Zorluğu", keycloak: "Zor", authentik: "Orta", zitadel: "Kolay", logto: "Çok Kolay", supertokens: "Orta (3-parça)", casdoor: "Kolay (tek binary)" },
 ];
 
@@ -67,8 +68,8 @@ export default function DecisionSlide(p: SlideProps) {
       index={p.index}
       total={p.total}
       kicker="04 · Karar"
-      title="Karşılaştırma & Sonuç"
-      subtitle="Teknoloji yığınımıza (Next.js, Laravel, Payload) ve ekip yetkinliklerimize en uygun çözümün belirlenmesi."
+      title="Karşılaştırma"
+      subtitle="Kurumsal mimarimize ve operasyonel yetkinliklerimize en yüksek uyumu sağlayan stratejik çözümün belirlenmesi."
     >
       <Table minWidth="1100px">
         <Table.Header>

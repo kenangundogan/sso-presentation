@@ -62,12 +62,12 @@ export default function NotFromScratchSlide(p: SlideProps) {
           </Card.Body>
         </Card>
 
-        {/* Table 2: With Logto */}
+        {/* Table 2: Open Source */}
         <Card>
           <Card.Header>
             <Card.Header.Left>
               <Typography size="lg" weight="bold">
-                Açık Kaynak (Logto) ile
+                Açık Kaynak ile
               </Typography>
             </Card.Header.Left>
             <Card.Header.Right>

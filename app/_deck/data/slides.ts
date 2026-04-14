@@ -42,6 +42,11 @@ export const SLIDE_HEADERS = {
     title: "Karşılaştırma",
     subtitle: "Kurumsal mimarimize ve operasyonel yetkinliklerimize en yüksek uyumu sağlayan stratejik çözümün belirlenmesi.",
   },
+  enterpriseAlternatives: {
+    kicker: "03 · Pazar Karşılaştırması",
+    title: "Ticari Alternatifler",
+    subtitle: "Büyük ölçekli ticari kimlik platformları ile açık kaynak çözümlerin kontrol, esneklik ve bağımsızlık karşılaştırması.",
+  },
   notFromScratch: {
     kicker: "04 · Build vs Buy",
     title: "Neden Sıfırdan Yazmıyoruz?",
@@ -83,6 +88,95 @@ export const SCORE_EXPLANATION = {
   verdict: "Puan, 10 somut kriterin var/yok kontrolüyle hesaplanır: OAuth/OIDC · SAML 2.0 · LDAP · SCIM 2.0 · MFA/Passkey · SDK (Next.js/TS uyumlu) · Yerleşik Multi-tenancy · Bağımsız Güvenlik Denetimi/Sertifika · Self-hosted + Managed Cloud · AI/MCP Entegrasyonu. Her ✓ = 1 puan.",
   warn: "Puanlama yalnızca özellik varlığını ölçer — özellik kalitesi, topluluk büyüklüğü, güvenlik geçmişi ve ekosistem olgunluğu gibi nitel faktörler framework detay kartlarında ayrıca değerlendirilmiştir.",
 } as const;
+
+/* ================================================================ *
+ * enterprise-alternatives
+ * ================================================================ */
+
+export type EnterprisePlatform = {
+  name: string;
+  website: string;
+  differentiator: string;
+  selfHosted: boolean;
+  protocols: string;
+  limitation: string;
+};
+
+export const ENTERPRISE_PLATFORMS: ReadonlyArray<EnterprisePlatform> = [
+  {
+    name: "Auth0 (Okta)",
+    website: "auth0.com",
+    differentiator: "En olgun geliştirici-odaklı kimlik platformu, Universal Login + Actions",
+    selfHosted: false,
+    protocols: "OIDC · SAML · LDAP",
+    limitation: "Ölçekte maliyet patlaması — MAU fiyatlaması prohibitif",
+  },
+  {
+    name: "Okta",
+    website: "okta.com",
+    differentiator: "Workforce IAM pazar lideri (Gartner Leader), en geniş entegrasyon kataloğu",
+    selfHosted: false,
+    protocols: "OIDC · SAML · LDAP · SCIM",
+    limitation: "Pahalı koltuk-bazlı lisans, workforce/customer ayrı ürün",
+  },
+  {
+    name: "Microsoft Entra ID",
+    website: "microsoft.com/entra",
+    differentiator: "700M+ kullanıcı, Microsoft 365/Azure/AD ekosistemi ile tam entegre",
+    selfHosted: false,
+    protocols: "OIDC · SAML · LDAP · WS-Fed · SCIM · Kerberos",
+    limitation: "Karmaşık lisanslama, Microsoft dışı ortamlarda zayıf",
+  },
+  {
+    name: "AWS Cognito",
+    website: "aws.amazon.com/cognito",
+    differentiator: "AWS-native IAM entegrasyonu, Lambda triggers, API Gateway bağlantısı",
+    selfHosted: false,
+    protocols: "OIDC · SAML",
+    limitation: "Kötü DX, sınırlı UI özelleştirme, AWS vendor lock-in",
+  },
+  {
+    name: "WorkOS",
+    website: "workos.com",
+    differentiator: "B2B SaaS için enterprise-readiness (SSO + SCIM + Directory Sync)",
+    selfHosted: false,
+    protocols: "OIDC · SAML · SCIM",
+    limitation: "B2B SSO odaklı — tam CIAM çözümü değil",
+  },
+  {
+    name: "Clerk",
+    website: "clerk.com",
+    differentiator: "React/Next.js drop-in UI bileşenleri, dakikalar içinde entegrasyon",
+    selfHosted: false,
+    protocols: "OIDC · SAML (ücretli tier)",
+    limitation: "React/Next.js ekosistemi kilidi, SAML yalnızca üst katmanda",
+  },
+  {
+    name: "Firebase Auth",
+    website: "firebase.google.com",
+    differentiator: "5 dakikada kurulum, mobil/web için en basit drop-in auth",
+    selfHosted: false,
+    protocols: "OIDC · SAML (Identity Platform)",
+    limitation: "RBAC yok, tenant yönetimi yok, SCIM yok — enterprise-grade değil",
+  },
+  {
+    name: "FusionAuth",
+    website: "fusionauth.io",
+    differentiator: "Self-host edilebilen ticari CIAM — MAU limiti yok (community)",
+    selfHosted: true,
+    protocols: "OIDC · SAML · LDAP",
+    limitation: "Gelişmiş özellikler ücretli, Java stack kaynak yoğun",
+  },
+];
+
+export const ENTERPRISE_VS_OPENSOURCE: ReadonlyArray<{ concern: string; commercial: string; openSource: string }> = [
+  { concern: "Ölçeklenme", commercial: "Kullanıcı sayısına bağlı artan maliyet yapısı", openSource: "Sınırsız kullanıcı, sabit operasyonel maliyet" },
+  { concern: "Vendor Lock-in", commercial: "Proprietery API, platform bağımlılığı", openSource: "Standart tabanlı (OIDC/SAML), taşınabilir" },
+  { concern: "Self-Hosting", commercial: "Çoğu yalnızca bulut, altyapı kontrolü yok", openSource: "Tam kontrol, on-prem veya bulut" },
+  { concern: "Veri Egemenliği", commercial: "Veri sağlayıcının altyapısında barınır", openSource: "Veri kendi altyapınızda (KVKK uyumlu)" },
+  { concern: "Özelleştirme", commercial: "Sağlayıcının uzantı noktalarıyla sınırlı", openSource: "Tam kaynak kod erişimi" },
+  { concern: "Protokol Desteği", commercial: "Bazı protokoller üst katmanlara özel", openSource: "OIDC/SAML/LDAP tam dahil" },
+];
 
 /* ================================================================ *
  * what-is-sso

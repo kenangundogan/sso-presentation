@@ -11,6 +11,7 @@ import ZitadelSlide from "./zitadel";
 import LogtoSlide from "./logto";
 import SuperTokensSlide from "./supertokens";
 import CasdoorSlide from "./casdoor";
+import EnterpriseAlternativesSlide from "./enterprise-alternatives";
 import DecisionSlide from "./decision";
 import NotFromScratchSlide from "./not-from-scratch";
 import ArchitectureSlide from "./architecture";
@@ -39,6 +40,7 @@ export const SLIDES: SlideEntry[] = [
   { component: LogtoSlide, label: "Logto", group: "Framework" },
   { component: SuperTokensSlide, label: "SuperTokens", group: "Framework" },
   { component: CasdoorSlide, label: "Casdoor", group: "Framework" },
+  { component: EnterpriseAlternativesSlide, label: "Ticari Alternatifler", group: "Framework" },
   { component: DecisionSlide, label: "Karşılaştırma", group: "Karar" },
   { component: NotFromScratchSlide, label: "Build vs Buy", group: "Karar" },
   { component: ArchitectureSlide, label: "Mimari", group: "Mimari" },

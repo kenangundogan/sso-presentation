@@ -129,11 +129,11 @@ export function Deck() {
   return (
     <div className="flex flex-1 flex-col bg-white">
       <div className="embla relative flex flex-1 overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex h-full w-full touch-pan-y">
+        <div className="embla__container flex h-dvh w-full touch-pan-y">
           {SLIDES.map(({ component: Slide }, i) => (
             <div
               key={i}
-              className="embla__slide relative flex h-full min-w-0 flex-[0_0_100%] flex-col overflow-y-auto"
+              className="embla__slide relative flex h-dvh min-w-0 flex-[0_0_100%] flex-col"
             >
               <Slide index={i} total={total} />
             </div>

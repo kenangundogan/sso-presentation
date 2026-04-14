@@ -1,6 +1,6 @@
 "use client";
 
-import { Info } from "lucide-react";
+import { OptionIcon } from "lucide-react";
 import { Popover } from "../components/popover";
 
 const SHORTCUTS: [string, string][] = [
@@ -23,10 +23,10 @@ export function KeyboardHint() {
         aria-label="Klavye kısayolları"
         className="flex h-9 w-9 items-center justify-center rounded-full border border-black/40 text-black/70 transition-colors hover:border-black hover:bg-black hover:text-white aria-expanded:border-black aria-expanded:bg-black aria-expanded:text-white"
       >
-        <Info className="h-4 w-4" strokeWidth={1.75} aria-hidden />
+        <OptionIcon className="h-4 w-4" strokeWidth={1.75} aria-hidden />
       </Popover.Trigger>
 
-      <Popover.Content className="w-[280px]">
+      <Popover.Content className="w-xs">
         <div className="flex items-center justify-between border-b border-black/15 px-4 py-2.5">
           <span className="font-mono text-sm uppercase tracking-[0.22em] text-black/60">
             Kısayollar

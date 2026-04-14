@@ -32,7 +32,7 @@ export function DeckControls({
     <footer className="bg-white">
       <ProgressBar value={progress} />
 
-      <div className="flex items-center gap-3 px-3 py-2.5 sm:gap-4 sm:px-6 sm:py-3">
+      <div className="flex items-center justify-between gap-4 p-4">
 
         <SlideCounter index={index} total={total} />
 

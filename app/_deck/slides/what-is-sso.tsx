@@ -23,6 +23,10 @@ const EXAMPLES: [string, string][] = [
   ["Google", "Gmail · YouTube · Drive · Maps"],
   ["Apple ID", "iCloud · App Store · iMessage"],
   ["Microsoft", "Office · Teams · OneDrive · Xbox"],
+  ["Amazon", "Prime · Kindle · AWS · Alexa"],
+  ["Meta", "Facebook · Instagram · WhatsApp"],
+  ["Atlassian", "Jira · Confluence · Bitbucket · Trello"],
+  ["Adobe", "Creative Cloud · Document Cloud · Behance"],
 ];
 
 export default function WhatIsSSOSlide(p: SlideProps) {
@@ -87,7 +91,7 @@ export default function WhatIsSSOSlide(p: SlideProps) {
             </Card.Header.Left>
           </Card.Header>
           <Card.Body>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-5">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-7">
               {EXAMPLES.map(([provider, apps]) => (
                 <div
                   key={provider}

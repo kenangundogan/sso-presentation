@@ -91,7 +91,7 @@ export default function WhatIsSSOSlide(p: SlideProps) {
             </Card.Header.Left>
           </Card.Header>
           <Card.Body>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-7">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-7">
               {EXAMPLES.map(([provider, apps]) => (
                 <div
                   key={provider}

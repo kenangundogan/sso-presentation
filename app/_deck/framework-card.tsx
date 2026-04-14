@@ -1,5 +1,5 @@
 import { Check, Minus, Plus, Star, X } from "lucide-react";
-import type { FrameworkFeatures } from "./data/frameworks";
+import type { Framework, Field } from "./data/frameworks";
 import { AnalysisVerdict } from "./components/analysis-verdict";
 import { Badge } from "./components/badge";
 import { BulletList } from "./components/bullet-list";
@@ -8,35 +8,10 @@ import { DescriptionList } from "./components/description-list";
 import { Typography } from "./components/typography";
 import { SlideShell } from "./slide-shell";
 
-export type FrameworkFacts = {
-  firstRelease: string;
-  stars: string;
-  contributors: string;
-  governance: string;
-  cloud: string;
-  apiStyle: string;
-  sdkCount: string;
-  setupDifficulty: string;
-};
-
 export type FrameworkCardProps = {
   index: number;
   total: number;
-  kicker: string;
-  name: string;
-  stack: string;
-  version: string;
-  license: string;
-  score: number;
-  selected?: boolean;
-  website?: string;
-  repo?: string;
-  facts?: FrameworkFacts;
-  features?: FrameworkFeatures;
-  strengths: string[];
-  weaknesses: string[];
-  verdict: string;
-  warn?: string;
+  framework: Framework;
 };
 
 function ScorePill({ value }: { value: number }) {
@@ -51,72 +26,68 @@ function ScorePill({ value }: { value: number }) {
 }
 
 /* ---------------------------------------------------------------- *
- * Spec Sheet — facts + features in a single Card
+ * SpecSheet — facts + features, fully driven by Field<T> labels
  * ---------------------------------------------------------------- */
 
-const FACT_ITEMS: ReadonlyArray<{ key: keyof FrameworkFacts; label: string }> = [
-  { key: "firstRelease", label: "İlk Yayım" },
-  { key: "stars", label: "GitHub Stars" },
-  { key: "contributors", label: "Contributor" },
-  { key: "governance", label: "Yönetişim" },
-  { key: "cloud", label: "Resmi Bulut" },
-  { key: "apiStyle", label: "API Stili" },
-  { key: "sdkCount", label: "SDK Sayısı" },
-  { key: "setupDifficulty", label: "Kurulum" },
+/** Which meta/comparison fields to show as "facts" */
+const FACT_FIELDS: ReadonlyArray<(fw: Framework) => Field<string | number>> = [
+  (fw) => fw.meta.firstRelease,
+  (fw) => fw.meta.stars,
+  (fw) => fw.meta.contributors,
+  (fw) => fw.comparison.governance,
+  (fw) => fw.comparison.cloud,
+  (fw) => fw.comparison.apiStyle,
+  (fw) => fw.comparison.sdkCount,
+  (fw) => fw.comparison.setupDifficulty,
 ];
 
-const FEATURE_ITEMS: ReadonlyArray<{ key: keyof FrameworkFeatures; label: string }> = [
-  { key: "openSource", label: "Açık Kaynak" },
-  { key: "selfHosted", label: "Self-Hosted" },
-  { key: "managedCloud", label: "Yönetilen Bulut" },
-  { key: "multiTenancy", label: "Multi-Tenancy" },
-  { key: "oauth", label: "OAuth / OIDC" },
-  { key: "saml", label: "SAML 2.0" },
-  { key: "ldap", label: "LDAP" },
-  { key: "scim", label: "SCIM 2.0" },
-  { key: "mfa", label: "MFA / Passkey" },
-  { key: "sdkNextJs", label: "SDK (Next.js/TS)" },
-  { key: "securityAudit", label: "Güvenlik Denetimi" },
-  { key: "mcp", label: "AI / MCP" },
-];
+function SpecSheet({ fw }: { fw: Framework }) {
+  const featureEntries = Object.values(fw.features);
 
-function SpecSheet({ facts, features }: { facts: FrameworkFacts; features: FrameworkFeatures }) {
   return (
-    <Card tone="subtle">
+    <Card tone="invert">
       <Card.Header>
         <Card.Header.Left>Kimlik Kartı</Card.Header.Left>
+        <Card.Header.Right>
+          <ScorePill value={fw.meta.score.value} />
+        </Card.Header.Right>
       </Card.Header>
       <Card.Body className="flex flex-col gap-4">
-        {/* Facts — key/value grid */}
+        {/* Facts */}
         <div className="grid grid-cols-1 gap-x-6 gap-y-2 lg:grid-cols-2 xl:grid-cols-4">
-          {FACT_ITEMS.map(({ key, label }) => (
-            <DescriptionList key={key} layout="default">
-              <DescriptionList.Item>
-                <DescriptionList.Item.Key>{label}</DescriptionList.Item.Key>
-                <DescriptionList.Item.Value>
-                  <Typography font="mono" weight="semibold" size="sm">{facts[key]}</Typography>
-                </DescriptionList.Item.Value>
-              </DescriptionList.Item>
-            </DescriptionList>
-          ))}
+          {FACT_FIELDS.map((getter) => {
+            const field = getter(fw);
+            return (
+              <DescriptionList key={field.en} layout="default">
+                <DescriptionList.Item>
+                  <DescriptionList.Item.Key>{field.tr}</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Value>
+                    <Typography font="mono" weight="semibold" size="sm">
+                      {String(field.value)}
+                    </Typography>
+                  </DescriptionList.Item.Value>
+                </DescriptionList.Item>
+              </DescriptionList>
+            );
+          })}
         </div>
 
-        {/* Features — inline badge pills */}
-        <div className="flex flex-wrap gap-1.5 border-t border-black/10 pt-3">
-          {FEATURE_ITEMS.map(({ key, label }) => (
+        {/* Features */}
+        <div className="flex flex-wrap gap-1.5 border-t border-white/20 pt-3">
+          {featureEntries.map((field) => (
             <span
-              key={key}
-              className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-xs ${features[key]
-                ? "border-black/20 bg-black/[0.04] text-black"
-                : "border-black/8 text-black/30"
+              key={field.en}
+              className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-xs ${field.value
+                ? "border-white/20"
+                : "opacity-50"
                 }`}
             >
-              {features[key] ? (
+              {field.value ? (
                 <Check className="h-3 w-3" strokeWidth={2.5} />
               ) : (
                 <X className="h-3 w-3" strokeWidth={2} />
               )}
-              {label}
+              {field.en}
             </span>
           ))}
         </div>
@@ -129,46 +100,35 @@ function SpecSheet({ facts, features }: { facts: FrameworkFacts; features: Frame
  * Main Card
  * ---------------------------------------------------------------- */
 
-export function FrameworkCard(p: FrameworkCardProps) {
+export function FrameworkCard({ index, total, framework: fw }: FrameworkCardProps) {
   return (
     <SlideShell
-      index={p.index}
-      total={p.total}
-      kicker={p.kicker}
-      title={
-        <span className="flex flex-wrap items-center gap-3 sm:gap-5">
-          {p.name}
-          {p.selected && (
-            <span className="inline-flex items-center gap-1.5 rounded bg-black px-2 py-0.5 font-mono text-sm uppercase tracking-[0.18em] text-white sm:px-3 sm:py-1 sm:tracking-[0.2em]">
-              <Check className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
-              Seçilen
-            </span>
-          )}
-        </span>
-      }
+      index={index}
+      total={total}
+      kicker={fw.kicker}
+      title={fw.meta.name.value}
     >
       <div className="mb-5 flex flex-wrap gap-2 sm:mb-6">
-        <Badge>Stack · {p.stack}</Badge>
-        <Badge>Sürüm · {p.version}</Badge>
-        <Badge>Lisans · {p.license}</Badge>
-        <ScorePill value={p.score} />
-        {p.website ? <Badge.Link href={p.website}>Site</Badge.Link> : null}
-        {p.repo ? <Badge.Link href={p.repo}>Repo</Badge.Link> : null}
+        <Badge>{fw.meta.stack.tr} · {fw.meta.stack.value}</Badge>
+        <Badge>{fw.meta.version.tr} · {fw.meta.version.value}</Badge>
+        <Badge>{fw.meta.license.tr} · {fw.meta.license.value}</Badge>
+        {fw.meta.website.value && <Badge.Link href={fw.meta.website.value}>{fw.meta.website.tr}</Badge.Link>}
+        {fw.meta.repo.value && <Badge.Link href={fw.meta.repo.value}>{fw.meta.repo.tr}</Badge.Link>}
       </div>
 
-      {p.facts && p.features && <SpecSheet facts={p.facts} features={p.features} />}
+      <SpecSheet fw={fw} />
 
       <div className="mt-5 grid flex-1 grid-cols-1 gap-4 sm:mt-6 md:grid-cols-2 md:gap-6">
         <Card>
           <Card.Header>
-            <Card.Header.Left>Güçlü Yönler</Card.Header.Left>
+            <Card.Header.Left>{fw.content.strengths.tr}</Card.Header.Left>
             <Card.Header.Right>
               <Plus className="h-4 w-4" strokeWidth={2} aria-hidden />
             </Card.Header.Right>
           </Card.Header>
           <Card.Body>
             <BulletList marker={Plus}>
-              {p.strengths.map((s, i) => (
+              {fw.content.strengths.value.map((s, i) => (
                 <BulletList.Item key={i}>{s}</BulletList.Item>
               ))}
             </BulletList>
@@ -177,14 +137,14 @@ export function FrameworkCard(p: FrameworkCardProps) {
 
         <Card>
           <Card.Header>
-            <Card.Header.Left>Zayıf Yönler</Card.Header.Left>
+            <Card.Header.Left>{fw.content.weaknesses.tr}</Card.Header.Left>
             <Card.Header.Right>
               <Minus className="h-4 w-4" strokeWidth={2} aria-hidden />
             </Card.Header.Right>
           </Card.Header>
           <Card.Body>
             <BulletList marker={Minus}>
-              {p.weaknesses.map((s, i) => (
+              {fw.content.weaknesses.value.map((s, i) => (
                 <BulletList.Item key={i}>{s}</BulletList.Item>
               ))}
             </BulletList>
@@ -193,8 +153,8 @@ export function FrameworkCard(p: FrameworkCardProps) {
       </div>
 
       <AnalysisVerdict>
-        <AnalysisVerdict.Result>{p.verdict}</AnalysisVerdict.Result>
-        {p.warn && <AnalysisVerdict.Warning>{p.warn}</AnalysisVerdict.Warning>}
+        <AnalysisVerdict.Result label={fw.content.verdict.tr}>{fw.content.verdict.value}</AnalysisVerdict.Result>
+        {fw.content.warn.value && <AnalysisVerdict.Warning>{fw.content.warn.value}</AnalysisVerdict.Warning>}
       </AnalysisVerdict>
     </SlideShell>
   );

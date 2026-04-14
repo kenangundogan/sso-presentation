@@ -1,55 +1,47 @@
 import { Table } from "../components/table";
 import { SlideShell } from "../slide-shell";
 import { Typography } from "../components/typography";
-import { FRAMEWORKS, type FrameworkId } from "../data/frameworks";
+import { FRAMEWORKS, type Framework, type FrameworkId, type Field } from "../data/frameworks";
 import type { SlideProps } from "../types";
 
 /* ---------------------------------------------------------------- *
- * Build comparison rows from the centralized framework data.
- * Each row pulls from framework.comparison + framework meta fields.
+ * Build comparison rows directly from Field<T> — labels come from
+ * the field itself, no separate lookup needed.
  * ---------------------------------------------------------------- */
 
-type Row = { kriter: string } & Record<FrameworkId, string>;
+type Row = { label: string } & Record<FrameworkId, string>;
 
-function row(kriter: string, getter: (id: FrameworkId) => string): Row {
+function row(getter: (fw: Framework) => Field<string | number | boolean>): Row {
+  const first = getter(FRAMEWORKS[0]);
   return FRAMEWORKS.reduce(
-    (acc, fw) => ({ ...acc, [fw.id]: getter(fw.id) }),
-    { kriter } as Row,
+    (acc, fw) => ({ ...acc, [fw.id]: String(getter(fw).value) }),
+    { label: first.tr } as Row,
   );
 }
 
-function get(id: FrameworkId) {
-  return FRAMEWORKS.find((f) => f.id === id)!;
-}
-
 const COMPARISON_DATA: ReadonlyArray<Row> = [
-  // ── Teknoloji ─────────────────────────────
-  row("Teknoloji / Stack", (id) => get(id).stack),
-  row("İlk Yayım", (id) => get(id).firstRelease),
-  row("API Stili", (id) => get(id).comparison.apiStyle),
-
-  // ── Lisans & Yönetişim ────────────────────
-  row("Lisans Modeli", (id) => get(id).license),
-  row("Yönetişim", (id) => get(id).comparison.governance),
-  row("Resmi Bulut", (id) => get(id).comparison.cloud),
-
-  // ── Protokol & Yetenek ────────────────────
-  row("LDAP Federation", (id) => get(id).comparison.ldap),
-  row("RADIUS Protokolü", (id) => get(id).comparison.radius),
-  row("SAML 2.0", (id) => get(id).comparison.saml),
-  row("AI / MCP Entegresi", (id) => get(id).comparison.mcp),
-
-  // ── Multi-tenant & Operasyon ──────────────
-  row("Çoklu Kurum Yapısı", (id) => get(id).comparison.multiTenancy),
-  row("Denetim Kaydı", (id) => get(id).comparison.auditLog),
-  row("Yönetim Arayüzü", (id) => get(id).comparison.adminUI),
-
-  // ── Geliştirici Deneyimi ──────────────────
-  row("Resmi SDK Sayısı", (id) => get(id).comparison.sdkCount),
-  row("Kurulum Zorluğu", (id) => get(id).comparison.setupDifficulty),
-
+  // ── Teknoloji
+  row((fw) => fw.meta.stack),
+  row((fw) => fw.meta.firstRelease),
+  row((fw) => fw.comparison.apiStyle),
+  // ── Lisans & Yönetişim
+  row((fw) => fw.meta.license),
+  row((fw) => fw.comparison.governance),
+  row((fw) => fw.comparison.cloud),
+  // ── Protokol & Yetenek
+  row((fw) => fw.comparison.ldap),
+  row((fw) => fw.comparison.radius),
+  row((fw) => fw.comparison.saml),
+  row((fw) => fw.comparison.mcp),
+  // ── Multi-tenant & Operasyon
+  row((fw) => fw.comparison.multiTenancy),
+  row((fw) => fw.comparison.auditLog),
+  row((fw) => fw.comparison.adminUI),
+  // ── Geliştirici Deneyimi
+  row((fw) => fw.comparison.sdkCount),
+  row((fw) => fw.comparison.setupDifficulty),
   // ── Genel Puan
-  row("Puan (10 üzerinden)", (id) => String(get(id).score)),
+  row((fw) => fw.meta.score),
 ];
 
 export default function DecisionSlide(p: SlideProps) {
@@ -69,10 +61,10 @@ export default function DecisionSlide(p: SlideProps) {
                 Kriter
               </Typography>
             </Table.Cell>
-            {FRAMEWORKS.map(({ id, name }) => (
-              <Table.Cell key={id} isHead>
+            {FRAMEWORKS.map((fw) => (
+              <Table.Cell key={fw.id} isHead>
                 <Typography size="sm" font="mono" transform="uppercase" tracking="widest" weight="medium">
-                  {name}
+                  {fw.meta.name.value}
                 </Typography>
               </Table.Cell>
             ))}
@@ -80,13 +72,13 @@ export default function DecisionSlide(p: SlideProps) {
         </Table.Header>
         <Table.Body>
           {COMPARISON_DATA.map((r) => (
-            <Table.Row key={r.kriter}>
+            <Table.Row key={r.label}>
               <Table.Cell>
-                <Typography size="md" emphasis="muted">{r.kriter}</Typography>
+                <Typography size="md" emphasis="muted">{r.label}</Typography>
               </Table.Cell>
-              {FRAMEWORKS.map(({ id }) => (
-                <Table.Cell key={id}>
-                  <Typography size="md" emphasis="faded">{r[id]}</Typography>
+              {FRAMEWORKS.map((fw) => (
+                <Table.Cell key={fw.id}>
+                  <Typography size="md" emphasis="faded">{r[fw.id]}</Typography>
                 </Table.Cell>
               ))}
             </Table.Row>

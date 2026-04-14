@@ -72,7 +72,7 @@ const DIAGRAM_PLAN: readonly DiagramStep[] = [
     node: {
       type: "hub",
       label: "Kimlik Sağlayıcı",
-      title: "Logto IdP",
+      title: "IdP",
       subtitle: "auth.domain.com",
       features: ["OAuth 2.1", "OIDC", "JWT Issuer", "MFA · Passkey"],
     },

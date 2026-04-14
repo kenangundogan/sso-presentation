@@ -16,13 +16,11 @@ export default function FrameworkOverviewSlide(p: SlideProps) {
       subtitle="Kendi sunucularımızda barındırabileceğimiz popüler kimlik yönetimi (IAM) çözümlerinin teknoloji, güncellik ve lisans bazlı karşılaştırması."
     >
       <div className="grid flex-1 grid-cols-1 gap-4 overflow-y-auto pb-8 sm:grid-cols-2 lg:grid-cols-3">
-        {FRAMEWORKS.map((f, i) => (
-          <Card key={f.id} className="h-full">
+        {FRAMEWORKS.map((fw, i) => (
+          <Card key={fw.id} className="h-full">
             <Card.Header divider={true}>
               <Card.Header.Left>
-                <Typography size="lg" weight="bold">
-                  {f.name}
-                </Typography>
+                <Typography size="lg" weight="bold">{fw.meta.name.value}</Typography>
               </Card.Header.Left>
               <Card.Header.Right>
                 <Typography size="sm" font="mono" emphasis="muted">
@@ -34,47 +32,47 @@ export default function FrameworkOverviewSlide(p: SlideProps) {
             <Card.Body>
               <DescriptionList layout="between" className="py-4">
                 <DescriptionList.Item>
-                  <DescriptionList.Item.Key>Teknoloji</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Key>{fw.meta.stack.tr}</DescriptionList.Item.Key>
                   <DescriptionList.Item.Value>
-                    <Typography font="mono" emphasis="default">{f.stack}</Typography>
+                    <Typography font="mono" emphasis="default">{fw.meta.stack.value}</Typography>
                   </DescriptionList.Item.Value>
                 </DescriptionList.Item>
                 <DescriptionList.Item>
-                  <DescriptionList.Item.Key>GitHub Stars</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Key>{fw.meta.stars.tr}</DescriptionList.Item.Key>
                   <DescriptionList.Item.Value>
-                    <Typography font="mono" weight="bold">{f.stars}</Typography>
+                    <Typography font="mono" weight="bold">{fw.meta.stars.value}</Typography>
                   </DescriptionList.Item.Value>
                 </DescriptionList.Item>
                 <DescriptionList.Item>
-                  <DescriptionList.Item.Key>Contributor Sayısı</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Key>{fw.meta.contributors.tr}</DescriptionList.Item.Key>
                   <DescriptionList.Item.Value>
-                    <Typography font="mono" weight="bold">{f.contributors}</Typography>
+                    <Typography font="mono" weight="bold">{fw.meta.contributors.value}</Typography>
                   </DescriptionList.Item.Value>
                 </DescriptionList.Item>
                 <DescriptionList.Item>
-                  <DescriptionList.Item.Key>Versiyon</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Key>{fw.meta.version.tr}</DescriptionList.Item.Key>
                   <DescriptionList.Item.Value>
-                    <Typography font="mono">{f.release}</Typography>
+                    <Typography font="mono">{fw.meta.release.value}</Typography>
                   </DescriptionList.Item.Value>
                 </DescriptionList.Item>
                 <DescriptionList.Item>
-                  <DescriptionList.Item.Key>Güncelleme</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Key>{fw.meta.releaseDate.tr}</DescriptionList.Item.Key>
                   <DescriptionList.Item.Value>
-                    <Typography>{f.releaseDate}</Typography>
+                    <Typography>{fw.meta.releaseDate.value}</Typography>
                   </DescriptionList.Item.Value>
                 </DescriptionList.Item>
                 <DescriptionList.Item>
-                  <DescriptionList.Item.Key>Lisans</DescriptionList.Item.Key>
+                  <DescriptionList.Item.Key>{fw.meta.license.tr}</DescriptionList.Item.Key>
                   <DescriptionList.Item.Value>
-                    <Typography emphasis="muted">{f.license}</Typography>
+                    <Typography emphasis="muted">{fw.meta.license.value}</Typography>
                   </DescriptionList.Item.Value>
                 </DescriptionList.Item>
               </DescriptionList>
             </Card.Body>
 
             <Card.Footer>
-              <Badge.Link tone="default" href={f.website}>Resmi Site</Badge.Link>
-              <Badge.Link tone="invert" href={f.repo}>Kaynak Kod</Badge.Link>
+              <Badge.Link tone="default" href={fw.meta.website.value}>{fw.meta.website.tr}</Badge.Link>
+              <Badge.Link tone="invert" href={fw.meta.repo.value}>{fw.meta.repo.tr}</Badge.Link>
             </Card.Footer>
           </Card>
         ))}

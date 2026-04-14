@@ -27,6 +27,7 @@ import PlatformsSlide from "./platforms";
 import RoadmapSlide from "./roadmap";
 import SummarySlide from "./summary";
 import GlossarySlide from "./glossary";
+import ThanksSlide from "./thanks";
 
 export type SlideEntry = {
   component: SlideComponent;
@@ -54,4 +55,5 @@ export const SLIDES: SlideEntry[] = [
   { component: RoadmapSlide, label: "Yol Haritası", group: "Plan" },
   { component: SummarySlide, label: "Sonuç", group: "Plan" },
   { component: GlossarySlide, label: "Sözlük", group: "Ek" },
+  { component: ThanksSlide, label: "Teşekkürler", group: "Ek" },
 ];

@@ -50,3 +50,22 @@ body {
 .embla__container {
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Cover slide — scrolling auth screen columns */
+@keyframes scroll-up {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes scroll-down {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+.animate-scroll-up {
+  animation: scroll-up 25s linear infinite;
+}
+
+.animate-scroll-down {
+  animation: scroll-down 25s linear infinite;
+}

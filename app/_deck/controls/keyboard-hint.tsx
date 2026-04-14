@@ -11,11 +11,6 @@ const SHORTCUTS: [string, string][] = [
   ["Wheel", "Trackpad ile gezinti"],
   ["Swipe", "Mobilde parmakla geçiş"],
 ];
-
-/**
- * Info badge that reveals a popover with all keyboard / pointer shortcuts.
- * Uses the shared <Popover> compound (portal + click-outside + Escape close).
- */
 export function KeyboardHint() {
   return (
     <Popover side="top" align="end">

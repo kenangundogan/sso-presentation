@@ -1,27 +1,18 @@
 import { AnalysisVerdict } from "../components/analysis-verdict";
 import { Table } from "../components/table";
+import { SLIDE_HEADERS, PLATFORM_DATA } from "../data/slides";
 import { Typography } from "../components/typography";
 import { SlideShell } from "../slide-shell";
 import type { SlideProps } from "../types";
-
-const PLATFORM_DATA = [
-  { type: "WEB",   scope: "Sunucu Render Portalları (SSR)", tech: "Laravel",           sdk: "PHP SDK + OIDC",               time: "2–3 Gün / Portal" },
-  { type: "WEB",   scope: "Modern Web Uygulamaları",        tech: "Next.js",           sdk: "@logto/next",                  time: "1–2 Gün / Uygulama" },
-  { type: "WEB",   scope: "CMS ve Yönetim Panelleri",       tech: "Next.js",           sdk: "@logto/next",                  time: "1–2 Gün / Proje" },
-  { type: "MOBİL", scope: "iOS & Android Uygulamaları",     tech: "React Native",      sdk: "@logto/rn",                    time: "2–3 Gün / Versiyon" },
-  { type: "TV",    scope: "Samsung Tizen & LG WebOS",       tech: "JavaScript",        sdk: "@logto/browser + Device Flow", time: "3–5 Gün / OS" },
-  { type: "TV",    scope: "Android TV & Google TV",         tech: "Kotlin (Native)",   sdk: "io.logto.sdk:android (Maven)", time: "2–3 Gün" },
-  { type: "TV",    scope: "Apple TV (tvOS)",                tech: "Swift",             sdk: "logto-io/swift (SPM)",         time: "2–3 Gün" },
-];
 
 export default function PlatformsSlide(p: SlideProps) {
   return (
     <SlideShell
       index={p.index}
       total={p.total}
-      kicker="05 · Platform & SDK"
-      title="Uçtan Uca Entegrasyon Planı"
-      subtitle="Eko-sistemimizdeki tüm platformlar için hazır kütüphane ve protokol desteği sayesinde, entegrasyon süreçleri standartlaştırılmıştır."
+      kicker={SLIDE_HEADERS.platforms.kicker}
+      title={SLIDE_HEADERS.platforms.title}
+      subtitle={SLIDE_HEADERS.platforms.subtitle}
     >
       <Table minWidth="820px">
         <Table.Header>

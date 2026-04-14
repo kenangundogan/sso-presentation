@@ -4,6 +4,7 @@ import { DescriptionList } from "../components/description-list";
 import { Badge } from "../components/badge";
 import { SlideShell } from "../slide-shell";
 import { FRAMEWORKS } from "../data/frameworks";
+import { SLIDE_HEADERS } from "../data/slides";
 import type { SlideProps } from "../types";
 
 export default function FrameworkOverviewSlide(p: SlideProps) {
@@ -11,9 +12,9 @@ export default function FrameworkOverviewSlide(p: SlideProps) {
     <SlideShell
       index={p.index}
       total={p.total}
-      kicker="03 · Pazar Araştırması"
-      title="Açık Kaynak Çözümler"
-      subtitle="Kendi sunucularımızda barındırabileceğimiz popüler kimlik yönetimi (IAM) çözümlerinin teknoloji, güncellik ve lisans bazlı karşılaştırması."
+      kicker={SLIDE_HEADERS.frameworkOverview.kicker}
+      title={SLIDE_HEADERS.frameworkOverview.title}
+      subtitle={SLIDE_HEADERS.frameworkOverview.subtitle}
     >
       <div className="grid flex-1 grid-cols-1 gap-4 overflow-y-auto pb-8 sm:grid-cols-2 lg:grid-cols-3">
         {FRAMEWORKS.map((fw, i) => (

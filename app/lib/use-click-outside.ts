@@ -1,9 +1,4 @@
 import { useEffect, type RefObject } from "react";
-
-/**
- * Calls `handler` when a `mousedown` happens outside the referenced element.
- * Pass `enabled = false` to temporarily disable the listener.
- */
 export function useClickOutside<T extends HTMLElement>(
   ref: RefObject<T | null>,
   handler: (event: MouseEvent) => void,

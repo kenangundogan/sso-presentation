@@ -1,10 +1,6 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export type TypographyTag = "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span" | "div";
 export type TypographySize = "xs" | "sm" | "base" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
 export type TypographyFont = "sans" | "mono";
@@ -14,7 +10,6 @@ export type TypographyAlign = "left" | "center" | "right";
 export type TypographyCase = "normal" | "uppercase";
 
 export interface TypographyProps {
-  /** The semantic HTML tag to use. Defaults based on size/context if not provided. */
   as?: TypographyTag;
   size?: TypographySize;
   font?: TypographyFont;
@@ -28,10 +23,6 @@ export interface TypographyProps {
   className?: string;
   children: React.ReactNode;
 }
-
-/* ---------------------------------------------------------------- *
- * Scale Mapping
- * ---------------------------------------------------------------- */
 
 const SIZES: Record<TypographySize, string> = {
   xs: "text-xs",
@@ -84,10 +75,6 @@ const TRACKING: Record<NonNullable<TypographyProps["tracking"]>, string> = {
   widest: "tracking-widest",
 };
 
-/* ---------------------------------------------------------------- *
- * Component
- * ---------------------------------------------------------------- */
-
 export function Typography({
   as,
   size = "md",
@@ -102,7 +89,7 @@ export function Typography({
   className,
   children,
 }: TypographyProps) {
-  // Determine default tag if none provided
+
   const Tag = as || (size === "base" || size === "md" ? "p" : "span");
 
   return (

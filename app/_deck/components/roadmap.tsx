@@ -2,10 +2,6 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Typography } from "./typography";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export interface RoadmapProps {
   className?: string;
   children: React.ReactNode;
@@ -15,12 +11,6 @@ export interface RoadmapItemProps {
   className?: string;
   children: React.ReactNode;
 }
-
-/* ---------------------------------------------------------------- *
- * Components
- * ---------------------------------------------------------------- */
-
-/** Root container for the roadmap. */
 function RoadmapRoot({ className, children }: RoadmapProps) {
   return (
     <div className={cn("grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4", className)}>
@@ -102,10 +92,6 @@ function RoadmapItemContent({ className, children }: RoadmapItemProps) {
   );
 }
 RoadmapItemContent.displayName = "Roadmap.Item.Content";
-
-/* ---------------------------------------------------------------- *
- * Compound export
- * ---------------------------------------------------------------- */
 
 export const Roadmap = Object.assign(RoadmapRoot, {
   Item: Object.assign(RoadmapItem, {

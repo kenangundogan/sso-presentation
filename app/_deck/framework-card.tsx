@@ -24,12 +24,6 @@ function ScorePill({ value }: { value: number }) {
     </span>
   );
 }
-
-/* ---------------------------------------------------------------- *
- * SpecSheet — facts + features, fully driven by Field<T> labels
- * ---------------------------------------------------------------- */
-
-/** Which meta/comparison fields to show as "facts" */
 const FACT_FIELDS: ReadonlyArray<(fw: Framework) => Field<string | number>> = [
   (fw) => fw.meta.firstRelease,
   (fw) => fw.meta.stars,
@@ -53,7 +47,6 @@ function SpecSheet({ fw }: { fw: Framework }) {
         </Card.Header.Right>
       </Card.Header>
       <Card.Body className="flex flex-col gap-4">
-        {/* Facts */}
         <div className="grid grid-cols-1 gap-x-6 gap-y-2 lg:grid-cols-2 xl:grid-cols-4">
           {FACT_FIELDS.map((getter) => {
             const field = getter(fw);
@@ -71,8 +64,6 @@ function SpecSheet({ fw }: { fw: Framework }) {
             );
           })}
         </div>
-
-        {/* Features */}
         <div className="flex flex-wrap gap-1.5 border-t border-white/20 pt-3">
           {featureEntries.map((field) => (
             <span
@@ -95,10 +86,6 @@ function SpecSheet({ fw }: { fw: Framework }) {
     </Card>
   );
 }
-
-/* ---------------------------------------------------------------- *
- * Main Card
- * ---------------------------------------------------------------- */
 
 export function FrameworkCard({ index, total, framework: fw }: FrameworkCardProps) {
   return (

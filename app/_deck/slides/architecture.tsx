@@ -2,11 +2,7 @@ import { ArchitectureDiagram } from "../components/architecture-diagram";
 import { SlideShell } from "../slide-shell";
 import { AnalysisVerdict } from "../components/analysis-verdict";
 import type { SlideProps } from "../types";
-
-/* ---------------------------------------------------------------- *
- * Diagram plan — typed as discriminated union so adding/removing
- * steps stays type-safe and Node prop drift gets caught at build.
- * ---------------------------------------------------------------- */
+import { SLIDE_HEADERS } from "../data/slides";
 
 type DiagramItem = {
   type: "leaf" | "hub";
@@ -104,18 +100,14 @@ const DIAGRAM_PLAN: readonly DiagramStep[] = [
   },
 ];
 
-/* ---------------------------------------------------------------- *
- * Slide
- * ---------------------------------------------------------------- */
-
 export default function ArchitectureSlide(p: SlideProps) {
   return (
     <SlideShell
       index={p.index}
       total={p.total}
-      kicker="05 · Teknik Mimari"
-      title="Entegrasyon Planı"
-      subtitle="Merkezi kimlik sağlayıcı üzerinden tüm uygulamaların uçtan uca entegrasyonu. Veriler kendi altyapımızda barındırılarak tam denetim sağlanır."
+      kicker={SLIDE_HEADERS.architecture.kicker}
+      title={SLIDE_HEADERS.architecture.title}
+      subtitle={SLIDE_HEADERS.architecture.subtitle}
     >
       <ArchitectureDiagram>
         {DIAGRAM_PLAN.map((step) => {
@@ -141,7 +133,6 @@ export default function ArchitectureSlide(p: SlideProps) {
             );
           }
 
-          // step.type === "node"
           return (
             <ArchitectureDiagram.Node
               key={step.id}
@@ -155,8 +146,6 @@ export default function ArchitectureSlide(p: SlideProps) {
           );
         })}
       </ArchitectureDiagram>
-
-      {/* KVKK note */}
       <AnalysisVerdict className="mt-8 lg:mt-12">
         <AnalysisVerdict.Result>
           Tüm kimlik verileri operasyonel sunucularımızda, kendi güvenli veri yapılarımızda barındırılır.

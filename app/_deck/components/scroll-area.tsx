@@ -3,8 +3,6 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-// ── Types ────────────────────────────────────
-
 export type ScrollAreaOrientation = "vertical" | "horizontal" | "both";
 export type ScrollbarVisibility = "auto" | "always" | "hover";
 
@@ -17,8 +15,6 @@ export interface ScrollAreaProps {
   viewportClassName?: string;
   children: React.ReactNode;
 }
-
-// ── Scrollbar styles ─────────────────────────
 
 const SCROLLBAR_BASE = [
   "[&::-webkit-scrollbar]:w-1.5",
@@ -49,8 +45,6 @@ const OVERFLOW_STYLES: Record<ScrollAreaOrientation, string> = {
   horizontal: "overflow-x-auto overflow-y-hidden",
   both: "overflow-auto",
 };
-
-// ── Component ────────────────────────────────
 
 export function ScrollArea({
   orientation = "vertical",

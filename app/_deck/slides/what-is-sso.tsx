@@ -3,45 +3,20 @@ import { BulletList } from "../components/bullet-list";
 import { Card } from "../components/card";
 import { Typography } from "../components/typography";
 import { SlideShell } from "../slide-shell";
+import { SLIDE_HEADERS, PRODUCT_POINTS, TECHNICAL_POINTS, SSO_EXAMPLES } from "../data/slides";
 import type { SlideProps } from "../types";
-
-const PRODUCT_POINTS = [
-  "Kullanıcı tek hesap, tek şifre, tek tıkla giriş yapar.",
-  "Her yeni site için ayrı kayıt yok — kayıt sürtünmesi sıfıra iner.",
-  "Profil, tercihler, abonelik merkezi ve tutarlı kalır.",
-  '"Google ile giriş yap" mantığının kendi markanızdaki hali.',
-];
-
-const TECHNICAL_POINTS = [
-  "Merkezi bir Identity Provider (IdP) tüm kimlik doğrulamayı üstlenir.",
-  "IdP imzalı JWT token üretir; uygulamalar (client) bu token'ı doğrular.",
-  "Standart protokol: OAuth 2.1 + OpenID Connect (OIDC) · veya SAML 2.0.",
-  "Her uygulama kendi kullanıcı veritabanını tutmaz — ortak kaynağa güvenir.",
-];
-
-const EXAMPLES: [string, string][] = [
-  ["Google", "Gmail · YouTube · Drive · Maps"],
-  ["Apple ID", "iCloud · App Store · iMessage"],
-  ["Microsoft", "Office · Teams · OneDrive · Xbox"],
-  ["Amazon", "Prime · Kindle · AWS · Alexa"],
-  ["Meta", "Facebook · Instagram · WhatsApp"],
-  ["Atlassian", "Jira · Confluence · Bitbucket · Trello"],
-  ["Adobe", "Creative Cloud · Document Cloud · Behance"],
-];
 
 export default function WhatIsSSOSlide(p: SlideProps) {
   return (
     <SlideShell
       index={p.index}
       total={p.total}
-      kicker="Temel Kavram"
-      title="SSO Nedir?"
-      subtitle="Single Sign-On — tek kimlik doğrulamasıyla birçok uygulamaya erişim. Kullanıcıya tek hesap deneyimi, mimarın eline merkezi kimlik kaynağı verir."
+      kicker={SLIDE_HEADERS.whatIsSso.kicker}
+      title={SLIDE_HEADERS.whatIsSso.title}
+      subtitle={SLIDE_HEADERS.whatIsSso.subtitle}
     >
       <div className="flex flex-1 flex-col gap-5 sm:gap-6">
-        {/* Dual perspective — Product vs Technical */}
         <div className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-          {/* Product / Business side */}
           <Card tone="default">
             <Card.Header>
               <Card.Header.Left>Ürün / İş Tarafı</Card.Header.Left>
@@ -60,8 +35,6 @@ export default function WhatIsSSOSlide(p: SlideProps) {
               </BulletList>
             </Card.Body>
           </Card>
-
-          {/* Technical side — inverted */}
           <Card tone="invert">
             <Card.Header>
               <Card.Header.Left>Teknik Taraf</Card.Header.Left>
@@ -81,8 +54,6 @@ export default function WhatIsSSOSlide(p: SlideProps) {
             </Card.Body>
           </Card>
         </div>
-
-        {/* Familiar examples */}
         <Card tone="subtle">
           <Card.Header divider={false} className="mb-3 items-center sm:mb-4">
             <Card.Header.Left>
@@ -92,7 +63,7 @@ export default function WhatIsSSOSlide(p: SlideProps) {
           </Card.Header>
           <Card.Body>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-7">
-              {EXAMPLES.map(([provider, apps]) => (
+              {SSO_EXAMPLES.map(([provider, apps]) => (
                 <div
                   key={provider}
                   className="flex flex-col border-l-2 border-black pl-3 sm:pl-4"

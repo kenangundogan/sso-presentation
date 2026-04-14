@@ -3,8 +3,6 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-// ── Types ────────────────────────────────────
-
 export interface TypewriterProps {
   texts: string[];
   typingSpeed?: number;
@@ -18,8 +16,6 @@ export interface TypewriterProps {
   onComplete?: () => void;
   className?: string;
 }
-
-// ── Component ────────────────────────────────
 
 export function Typewriter({
   texts,

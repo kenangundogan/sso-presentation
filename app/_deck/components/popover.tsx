@@ -5,10 +5,6 @@ import * as ReactDOM from "react-dom";
 import { cn } from "../../lib/utils";
 import { useEscapeClose } from "../../lib/use-escape-close";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export type PopoverSide = "top" | "bottom" | "left" | "right";
 export type PopoverAlign = "start" | "center" | "end";
 
@@ -35,10 +31,6 @@ export interface PopoverContentProps {
   children: React.ReactNode;
 }
 
-/* ---------------------------------------------------------------- *
- * Context
- * ---------------------------------------------------------------- */
-
 interface PopoverContextValue {
   isOpen: boolean;
   toggle: () => void;
@@ -61,10 +53,6 @@ function usePopover(): PopoverContextValue {
     throw new Error("Popover sub-components must be used within <Popover>");
   return ctx;
 }
-
-/* ---------------------------------------------------------------- *
- * Root
- * ---------------------------------------------------------------- */
 
 function PopoverRoot({
   open,
@@ -103,7 +91,6 @@ function PopoverRoot({
   );
   const close = React.useCallback(() => setOpen(false), [setOpen]);
 
-  // Click-outside that respects both the wrapper AND portaled content
   React.useEffect(() => {
     if (!isOpen || !closeOnOutside) return;
     const handleMouseDown = (event: MouseEvent) => {
@@ -149,10 +136,6 @@ function PopoverRoot({
   );
 }
 PopoverRoot.displayName = "Popover";
-
-/* ---------------------------------------------------------------- *
- * Trigger
- * ---------------------------------------------------------------- */
 
 function PopoverTrigger({
   asChild = false,
@@ -208,10 +191,6 @@ function PopoverTrigger({
 }
 PopoverTrigger.displayName = "PopoverTrigger";
 
-/* ---------------------------------------------------------------- *
- * Content
- * ---------------------------------------------------------------- */
-
 const GAP = 8;
 
 function computePosition(
@@ -240,7 +219,6 @@ function computePosition(
     else if (align === "end") top = triggerRect.bottom - contentRect.height;
   }
 
-  // Viewport clamp
   const { innerWidth, innerHeight } = window;
   if (left + contentRect.width > innerWidth - 8)
     left = innerWidth - contentRect.width - 8;
@@ -320,10 +298,6 @@ function PopoverContent({ className, children }: PopoverContentProps) {
   );
 }
 PopoverContent.displayName = "PopoverContent";
-
-/* ---------------------------------------------------------------- *
- * Compound export
- * ---------------------------------------------------------------- */
 
 export const Popover = Object.assign(PopoverRoot, {
   Trigger: PopoverTrigger,

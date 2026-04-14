@@ -9,15 +9,6 @@ import ClassNames from "embla-carousel-class-names";
 import { DeckControls } from "./controls";
 import { PresenterInfo } from "./components/presenter-info";
 import { SLIDES } from "./slides";
-
-/**
- * Deck — orchestrates the presentation:
- *  - Embla carousel viewport (fade transition + wheel gestures + drag)
- *  - Keyboard navigation (← / → / Space / Home / End)
- *  - Bottom controls (prev/next/dots/counter)
- *
- * Slides are defined in ./slides — adding one is a one-line registry change there.
- */
 export function Deck() {
   const total = SLIDES.length;
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -26,9 +17,7 @@ export function Deck() {
       duration: 28,
       align: "start",
       containScroll: false,
-      // Skip slide-drag when the gesture starts inside a child that opted out
-      // with `data-embla-no-drag`. Lets inner scrollable areas (e.g. horizontal
-      // step flows, tables) handle their own touch / pointer gestures natively.
+
       watchDrag: (_api, event) => {
         const target = event.target as Element | null;
         return !target?.closest("[data-embla-no-drag]");
@@ -46,7 +35,6 @@ export function Deck() {
     [emblaApi],
   );
 
-  // Sync React index with Embla state & Update URL Hash
   useEffect(() => {
     if (!emblaApi) return;
 
@@ -54,14 +42,12 @@ export function Deck() {
       const newIndex = emblaApi.selectedScrollSnap();
       setIndex(newIndex);
 
-      // Update URL hash (1-based for users)
       const hash = `#${newIndex + 1}`;
       if (window.location.hash !== hash) {
         window.history.replaceState(null, "", hash);
       }
     };
 
-    // Initial sync from URL hash
     const initialHash = window.location.hash;
     if (initialHash) {
       const initialIndex = parseInt(initialHash.substring(1), 10) - 1;
@@ -74,7 +60,6 @@ export function Deck() {
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
 
-    // Sync when back/forward or manual hash change happens
     const onHashChange = () => {
       const hash = window.location.hash;
       if (hash) {
@@ -96,7 +81,6 @@ export function Deck() {
     };
   }, [emblaApi, total]);
 
-  // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;

@@ -2,8 +2,6 @@ export type SlideCounterProps = {
   index: number;
   total: number;
 };
-
-/** "Slayt 03 / 17" counter shown at the right of the footer. */
 export function SlideCounter({ index, total }: SlideCounterProps) {
   return (
     <div className="flex items-center gap-1.5 font-mono text-sm tabular-nums text-black sm:gap-3">

@@ -9,11 +9,6 @@ export type QuickNavProps = {
   index: number;
   onJump: (i: number) => void;
 };
-
-/**
- * Quick-jump navigation popover. Sits between Prev/Next buttons.
- * Uses the shared <Popover> compound (portal + click-outside + Escape close).
- */
 export function QuickNav({ index, onJump }: QuickNavProps) {
   const [open, setOpen] = useState(false);
 

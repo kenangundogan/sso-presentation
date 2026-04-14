@@ -1,8 +1,4 @@
-/**
- * Edge-to-edge progress strip. Doubles as the footer's top border —
- * the unfilled portion sits at the same opacity as a hairline divider,
- * the filled portion is solid black.
- */
+
 export function ProgressBar({ value }: { value: number }) {
   return (
     <div

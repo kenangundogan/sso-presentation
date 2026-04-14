@@ -13,12 +13,6 @@ export type DeckControlsProps = {
   onNext: () => void;
   onJump: (i: number) => void;
 };
-
-/**
- * Bottom control bar.
- * Top edge: full-bleed ProgressBar (also acts as the visual divider).
- * Body: prev/next + info hint · dot navigation (md+) · slide counter.
- */
 export function DeckControls({
   index,
   total,

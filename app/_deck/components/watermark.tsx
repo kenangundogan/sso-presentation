@@ -6,11 +6,6 @@ export interface WatermarkProps {
   className?: string;
   position?: "bottom-right" | "top-right";
 }
-
-/**
- * Editorial background watermark for slides.
- * Positioned absolute at the corners of its container.
- */
 export function Watermark({ children, className }: WatermarkProps) {
   return (
     <span

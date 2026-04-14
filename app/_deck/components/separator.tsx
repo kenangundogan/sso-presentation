@@ -1,19 +1,9 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export interface SeparatorProps {
   className?: string;
 }
-
-/* ---------------------------------------------------------------- *
- * Component
- * ---------------------------------------------------------------- */
-
-/** Hairline horizontal rule. */
 export function Separator({ className }: SeparatorProps) {
   return (
     <div

@@ -1,10 +1,6 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export type CardTone = "default" | "invert" | "subtle";
 
 export interface CardProps {
@@ -14,7 +10,6 @@ export interface CardProps {
 }
 
 export interface CardHeaderProps {
-  /** Show the bottom hairline divider under the header. Default: true. */
   divider?: boolean;
   className?: string;
   children: React.ReactNode;
@@ -25,20 +20,11 @@ export interface CardSectionProps {
   children: React.ReactNode;
 }
 
-/* ---------------------------------------------------------------- *
- * Tone context
- * ---------------------------------------------------------------- */
-
 interface CardContextValue {
   tone: CardTone;
 }
 
 const CardContext = React.createContext<CardContextValue>({ tone: "default" });
-
-/**
- * Read the current Card tone from context.
- * Returns "default" when used outside of any `<Card>`.
- */
 export function useCardTone(): CardTone {
   return React.useContext(CardContext).tone;
 }
@@ -67,10 +53,6 @@ const ACCENT_TEXT_CLASSES: Record<CardTone, string> = {
   subtle: "text-black/70",
 };
 
-/* ---------------------------------------------------------------- *
- * Root
- * ---------------------------------------------------------------- */
-
 function CardRoot({ tone = "default", className, children }: CardProps) {
   return (
     <CardContext.Provider value={{ tone }}>
@@ -87,10 +69,6 @@ function CardRoot({ tone = "default", className, children }: CardProps) {
   );
 }
 CardRoot.displayName = "Card";
-
-/* ---------------------------------------------------------------- *
- * Header + sub-slots (Left / Right)
- * ---------------------------------------------------------------- */
 
 function CardHeader({
   divider = true,
@@ -145,20 +123,12 @@ function HeaderRight({ className, children }: CardSectionProps) {
 }
 HeaderRight.displayName = "Card.Header.Right";
 
-/* ---------------------------------------------------------------- *
- * Body
- * ---------------------------------------------------------------- */
-
 function CardBody({ className, children }: CardSectionProps) {
   return (
     <div className={cn("flex flex-1 flex-col gap-3", className)}>{children}</div>
   );
 }
 CardBody.displayName = "Card.Body";
-
-/* ---------------------------------------------------------------- *
- * Footer
- * ---------------------------------------------------------------- */
 
 function CardFooter({ className, children }: CardSectionProps) {
   const tone = useCardTone();
@@ -175,10 +145,6 @@ function CardFooter({ className, children }: CardSectionProps) {
   );
 }
 CardFooter.displayName = "Card.Footer";
-
-/* ---------------------------------------------------------------- *
- * Compound export
- * ---------------------------------------------------------------- */
 
 const Header = Object.assign(CardHeader, {
   Left: HeaderLeft,

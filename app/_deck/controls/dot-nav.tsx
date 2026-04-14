@@ -3,8 +3,6 @@ export type DotNavProps = {
   total: number;
   onJump: (i: number) => void;
 };
-
-/** Pagination dots — visible on md+ screens. */
 export function DotNav({ index, total, onJump }: DotNavProps) {
   return (
     <div className="hidden flex-1 items-center justify-center gap-1.5 md:flex">

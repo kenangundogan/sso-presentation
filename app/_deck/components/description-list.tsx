@@ -1,26 +1,13 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-/* ---------------------------------------------------------------- *
- * Context
- * ---------------------------------------------------------------- */
-
 type DescriptionListLayout = "default" | "between";
 
 const DescriptionListContext = React.createContext<{
   layout: DescriptionListLayout;
 }>({ layout: "default" });
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export interface DescriptionListProps {
-  /**
-   * Layout of the list items.
-   * - `default`: Key and value are side by side with a small gap.
-   * - `between`: Key is left-aligned, value is right-aligned.
-   */
   layout?: DescriptionListLayout;
   className?: string;
   children: React.ReactNode;
@@ -30,10 +17,6 @@ export interface DescriptionListItemProps {
   className?: string;
   children: React.ReactNode;
 }
-
-/* ---------------------------------------------------------------- *
- * Sub-components
- * ---------------------------------------------------------------- */
 
 function DescriptionListRoot({
   layout = "default",
@@ -91,10 +74,6 @@ function ItemValue({ className, children }: DescriptionListItemProps) {
   );
 }
 ItemValue.displayName = "DescriptionList.Item.Value";
-
-/* ---------------------------------------------------------------- *
- * Compound export
- * ---------------------------------------------------------------- */
 
 const Item = Object.assign(ItemRoot, {
   Key: ItemKey,

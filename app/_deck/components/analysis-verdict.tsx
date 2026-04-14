@@ -2,10 +2,6 @@ import * as React from "react";
 import { TriangleAlert } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export interface AnalysisVerdictProps {
   className?: string;
   children: React.ReactNode;
@@ -13,7 +9,6 @@ export interface AnalysisVerdictProps {
 
 export interface AnalysisVerdictResultProps {
   className?: string;
-  /** Eyebrow label rendered above the body. Defaults to "Değerlendirme". */
   label?: string;
   children: React.ReactNode;
 }
@@ -22,10 +17,6 @@ export interface AnalysisVerdictWarningProps {
   className?: string;
   children: React.ReactNode;
 }
-
-/* ---------------------------------------------------------------- *
- * Sub-components
- * ---------------------------------------------------------------- */
 
 function AnalysisVerdictRoot({ className, children }: AnalysisVerdictProps) {
   return (
@@ -80,10 +71,6 @@ function AnalysisVerdictWarning({
   );
 }
 AnalysisVerdictWarning.displayName = "AnalysisVerdict.Warning";
-
-/* ---------------------------------------------------------------- *
- * Compound export
- * ---------------------------------------------------------------- */
 
 export const AnalysisVerdict = Object.assign(AnalysisVerdictRoot, {
   Result: AnalysisVerdictResult,

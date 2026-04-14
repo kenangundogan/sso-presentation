@@ -2,92 +2,8 @@ import { Card } from "../components/card";
 import { DescriptionList } from "../components/description-list";
 import { Typography } from "../components/typography";
 import { SlideShell } from "../slide-shell";
+import { SLIDE_HEADERS, FLOW_STEPS, TOKEN_TYPES } from "../data/slides";
 import type { SlideProps } from "../types";
-
-/* ---------------------------------------------------------------- *
- * Data
- * ---------------------------------------------------------------- */
-
-type Step = {
-  num: string;
-  title: string;
-  actors: string;
-  detail: string;
-};
-
-const STEPS: Step[] = [
-  {
-    num: "01",
-    title: "Yönlendirme",
-    actors: "Uygulama → IdP",
-    detail:
-      "Uygulama, kullanıcıyı merkezi giriş ekranına yönlendirir. Arka planda güvenli bağlantı için bir doğrulama talebi oluşturulur.",
-  },
-  {
-    num: "02",
-    title: "Kimlik Doğrulama",
-    actors: "IdP ↔ Kullanıcı",
-    detail:
-      "Kullanıcı giriş yapar. Şifre ve 2. faktör (MFA) sadece merkezi sistemde kontrol edilir; şifre uygulamaya asla gitmez.",
-  },
-  {
-    num: "03",
-    title: "Onay Kodu",
-    actors: "IdP → Uygulama",
-    detail:
-      "Giriş başarılıysa sistem, kullanıcıyı tek kullanımlık bir 'onay kodu' ile güvenli bir şekilde uygulamaya geri döndürür.",
-  },
-  {
-    num: "04",
-    title: "Anahtar Takası",
-    actors: "Uygulama → IdP",
-    detail:
-      "Uygulama aldığı kodu kullanarak, arka planda (sunucu-sunucu) asıl yetki anahtarlarını (Token) sistemsel olarak teslim alır.",
-  },
-  {
-    num: "05",
-    title: "Güvenli Erişim",
-    actors: "Uygulama → Servis",
-    detail:
-      "Alınan anahtarlar ile verilere erişilir. Her istek dijital imza ile doğrulanır, veri güvenliği uçtan uca sağlanmış olur.",
-  },
-];
-
-type Token = {
-  name: string;
-  tag: string;
-  lifespan: string;
-  format: string;
-  note: string;
-};
-
-const TOKENS: Token[] = [
-  {
-    name: "Access Token",
-    tag: "Erişim Anahtarı",
-    lifespan: "Geçici · 5–15 dk",
-    format: "JWT (Dijital İmza)",
-    note: "Servislerden veri çekmek için kullanılır. Süresi dolduğunda yenilenmesi gerekir.",
-  },
-  {
-    name: "ID Token",
-    tag: "Kimlik Bilgisi",
-    lifespan: "Kısa Ömürlü",
-    format: "JWT (OIDC)",
-    note: "Kullanıcının adı, e-postası ve temel profil bilgilerini güvenli bir pakette taşır.",
-  },
-  {
-    name: "Refresh Token",
-    tag: "Yenileme Anahtarı",
-    lifespan: "Uzun Ömürlü",
-    format: "Opaque (Kapalı)",
-    note: "Kullanıcının sürekli giriş yapmasına gerek kalmadan, oturumun güvenle devamını sağlar.",
-  },
-];
-
-/* ---------------------------------------------------------------- *
- * Building blocks
- * ---------------------------------------------------------------- */
 
 function SectionHeader({ children }: { children: string }) {
   return (
@@ -100,26 +16,21 @@ function SectionHeader({ children }: { children: string }) {
   );
 }
 
-/* ---------------------------------------------------------------- *
- * Slide
- * ---------------------------------------------------------------- */
-
 export default function HowSlide(p: SlideProps) {
   return (
     <SlideShell
       index={p.index}
       total={p.total}
-      kicker="02 · Protokol"
-      title="SSO Nasıl Çalışır?"
-      subtitle="Modern kimlik protokolleri (OAuth 2.1 & OIDC) ile şifreler uygulamalara hiç ulaşmaz; tüm süreç güvenli dijital anahtarlar üzerinden yürütülür."
+      kicker={SLIDE_HEADERS.how.kicker}
+      title={SLIDE_HEADERS.how.title}
+      subtitle={SLIDE_HEADERS.how.subtitle}
     >
       <div className="flex flex-1 flex-col gap-6 sm:gap-8">
-        {/* Flow */}
         <section>
           <SectionHeader>Çalışma Akışı</SectionHeader>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {STEPS.map((step) => (
+            {FLOW_STEPS.map((step) => (
               <Card key={step.num} className="h-full">
                 <Card.Header divider={false}>
                   <Card.Header.Left>
@@ -145,13 +56,11 @@ export default function HowSlide(p: SlideProps) {
             ))}
           </div>
         </section>
-
-        {/* Tokens */}
         <section>
           <SectionHeader>Token Çeşitleri</SectionHeader>
 
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
-            {TOKENS.map((token, i) => (
+            {TOKEN_TYPES.map((token, i) => (
               <Card key={token.name} tone={i === 0 ? "invert" : "default"}>
                 <Card.Header>
                   <Card.Header.Left>

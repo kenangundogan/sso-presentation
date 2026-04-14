@@ -13,7 +13,6 @@ const CORNER_POSITIONS = [
 export default function ThanksSlide(p: SlideProps) {
   return (
     <section className="relative flex min-h-full w-full flex-col overflow-hidden bg-white selection:bg-black selection:text-white">
-      {/* Dotted grid background */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.045]"
@@ -24,8 +23,6 @@ export default function ThanksSlide(p: SlideProps) {
       />
 
       <Watermark>FIN</Watermark>
-
-      {/* Corner marks */}
       {CORNER_POSITIONS.map((cls) => (
         <Plus
           key={cls}
@@ -34,8 +31,6 @@ export default function ThanksSlide(p: SlideProps) {
           className={`pointer-events-none absolute h-3 w-3 text-black/40 ${cls}`}
         />
       ))}
-
-      {/* Top bar */}
       <header className="relative z-10 flex items-center justify-between gap-3 border-b border-black/10 px-5 py-4 sm:px-10 sm:py-5 md:px-16 md:py-6">
         <Typography size="sm" font="mono" transform="uppercase" tracking="widest" emphasis="faded">
           {String(p.index + 1).padStart(2, "0")} / {String(p.total).padStart(2, "0")}
@@ -44,8 +39,6 @@ export default function ThanksSlide(p: SlideProps) {
           SSO · Ortak Üyelik Sistemi
         </Typography>
       </header>
-
-      {/* Center stage */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 sm:px-10 md:px-16">
         <h1 className="text-center font-semibold leading-[0.85] tracking-[-0.04em]">
           <span className="block text-5xl md:text-9xl">

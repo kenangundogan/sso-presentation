@@ -5,10 +5,6 @@ import { Badge } from "./badge";
 import { Card } from "./card";
 import { Typography } from "./typography";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export interface DiagramProps {
   className?: string;
   children?: React.ReactNode;
@@ -28,10 +24,6 @@ export interface DiagramNodeProps {
   tone?: "default" | "invert";
   className?: string;
 }
-
-/* ---------------------------------------------------------------- *
- * Components
- * ---------------------------------------------------------------- */
 
 function DiagramRoot({ className, children }: DiagramProps) {
   return (
@@ -138,10 +130,6 @@ function DiagramConnector({ text, className }: { text?: string; className?: stri
     </div>
   );
 }
-
-/* ---------------------------------------------------------------- *
- * Compound Export
- * ---------------------------------------------------------------- */
 
 export const ArchitectureDiagram = Object.assign(DiagramRoot, {
   Tier: DiagramTier,

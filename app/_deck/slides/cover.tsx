@@ -6,10 +6,6 @@ import { Watermark } from "../components/watermark";
 import { Typography } from "../components/typography";
 import type { SlideProps } from "../types";
 
-/* ---------------------------------------------------------------- *
- * Mock screen cards — different auth UI states
- * ---------------------------------------------------------------- */
-
 function ScreenLogin() {
   return (
     <div className="w-96 rounded-lg border border-black/15 bg-white p-8">
@@ -180,15 +176,11 @@ function ScreenPlatforms() {
   );
 }
 
-/* ---------------------------------------------------------------- *
- * Scrolling columns — two columns, opposite directions
- * ---------------------------------------------------------------- */
-
 const COL_A = [ScreenLogin, ScreenMFA, ScreenPasskey];
 const COL_B = [ScreenConsent, ScreenProfile, ScreenPlatforms];
 
 function ScrollColumn({ screens, direction }: { screens: Array<() => React.JSX.Element>; direction: "up" | "down" }) {
-  // Duplicate for seamless loop
+
   const items = [...screens, ...screens];
   const animClass = direction === "up" ? "animate-scroll-up" : "animate-scroll-down";
 
@@ -203,10 +195,6 @@ function ScrollColumn({ screens, direction }: { screens: Array<() => React.JSX.E
   );
 }
 
-/* ---------------------------------------------------------------- *
- * Corner marks
- * ---------------------------------------------------------------- */
-
 const CORNER_POSITIONS = [
   "left-3 top-3 sm:left-5 sm:top-5 md:left-8 md:top-8",
   "right-3 top-3 sm:right-5 sm:top-5 md:right-8 md:top-8",
@@ -214,14 +202,9 @@ const CORNER_POSITIONS = [
   "bottom-3 right-3 sm:bottom-5 sm:right-5 md:bottom-8 md:right-8",
 ];
 
-/* ---------------------------------------------------------------- *
- * Slide
- * ---------------------------------------------------------------- */
-
 export default function CoverSlide(_p: SlideProps) {
   return (
     <section className="relative flex min-h-full w-full flex-col overflow-hidden bg-white selection:bg-black selection:text-white">
-      {/* Dotted grid background */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.045]"
@@ -241,8 +224,6 @@ export default function CoverSlide(_p: SlideProps) {
           className={`pointer-events-none absolute h-3 w-3 text-black/40 ${cls}`}
         />
       ))}
-
-      {/* Top bar */}
       <header className="relative z-10 flex items-center justify-between gap-3 border-b border-black/10 px-5 py-4 sm:px-10 sm:py-5 md:px-16 md:py-6">
         <div className="flex items-center gap-3 sm:gap-5">
           <div
@@ -259,11 +240,7 @@ export default function CoverSlide(_p: SlideProps) {
           Nisan 2026
         </Typography>
       </header>
-
-      {/* Main stage */}
       <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden lg:flex-row lg:items-stretch">
-
-        {/* Left — Title area */}
         <div className="flex flex-col justify-center px-5 py-10 sm:px-10 sm:py-12 md:px-16 md:py-16 lg:flex-1">
           <h1 className="font-semibold leading-[0.85] tracking-[-0.04em]">
             <span className="block text-5xl md:text-9xl">
@@ -285,10 +262,7 @@ export default function CoverSlide(_p: SlideProps) {
             Tek kimlik doğrulamasıyla tüm platformlara erişim. Açık kaynak, self-hosted, KVKK uyumlu kimlik altyapısı.
           </Typography>
         </div>
-
-        {/* Right — Scrolling auth screens */}
         <div className="relative hidden h-full overflow-hidden lg:flex lg:w-[820px] xl:w-[860px]">
-          {/* Fade masks top & bottom */}
           <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-24 bg-gradient-to-b from-white to-transparent" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-24 bg-gradient-to-t from-white to-transparent" />
 

@@ -2,10 +2,6 @@ import * as React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export type BadgeTone = "default" | "invert" | "subtle";
 
 export interface BadgeProps {
@@ -17,10 +13,6 @@ export interface BadgeProps {
 export interface BadgeLinkProps extends BadgeProps {
   href: string;
 }
-
-/* ---------------------------------------------------------------- *
- * Badge
- * ---------------------------------------------------------------- */
 
 const TONE_CLASSES: Record<BadgeTone, string> = {
   default: "border-black text-black bg-transparent",
@@ -42,10 +34,6 @@ function BadgeRoot({ tone = "default", className, children }: BadgeProps) {
   );
 }
 BadgeRoot.displayName = "Badge";
-
-/* ---------------------------------------------------------------- *
- * Badge.Link
- * ---------------------------------------------------------------- */
 
 const LINK_TONE_CLASSES: Record<BadgeTone, string> = {
   default: "border-black bg-white text-black hover:bg-black hover:text-white",
@@ -76,10 +64,6 @@ export function BadgeLink({
   );
 }
 BadgeLink.displayName = "Badge.Link";
-
-/* ---------------------------------------------------------------- *
- * Compound export
- * ---------------------------------------------------------------- */
 
 export const Badge = Object.assign(BadgeRoot, {
   Link: BadgeLink,

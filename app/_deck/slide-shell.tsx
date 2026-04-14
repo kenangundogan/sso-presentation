@@ -10,11 +10,6 @@ export type SlideShellProps = {
   subtitle?: ReactNode;
   children?: ReactNode;
 };
-
-/**
- * Standard slide layout used by every non-cover slide.
- * Renders a header (counter + section kicker), the title block, and a content area.
- */
 export function SlideShell({
   index,
   total,

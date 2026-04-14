@@ -3,24 +3,10 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 import { useCardTone } from "./card";
 
-/* ---------------------------------------------------------------- *
- * Types
- * ---------------------------------------------------------------- */
-
 export type BulletTone = "default" | "invert";
 
 export interface BulletListProps {
-  /**
-   * Override tone explicitly. If omitted, the list inherits from the closest
-   * parent `<Card tone="...">` (default → default, invert → invert,
-   * subtle → default).
-   */
   tone?: BulletTone;
-  /**
-   * Marker icon shown before each item. Default: `Minus` (preserves the
-   * original horizontal-bar look). Pass any Lucide icon — e.g. `Dot`,
-   * `ChevronRight`, `Square`, `ArrowRight`.
-   */
   marker?: LucideIcon;
   className?: string;
   children: React.ReactNode;
@@ -30,10 +16,6 @@ export interface BulletListItemProps {
   className?: string;
   children: React.ReactNode;
 }
-
-/* ---------------------------------------------------------------- *
- * Tone + marker context
- * ---------------------------------------------------------------- */
 
 interface BulletListContextValue {
   tone: BulletTone;
@@ -46,10 +28,6 @@ const BulletListContext = React.createContext<BulletListContextValue>({
   tone: "default",
   Marker: DEFAULT_MARKER,
 });
-
-/* ---------------------------------------------------------------- *
- * Root
- * ---------------------------------------------------------------- */
 
 function BulletListRoot({
   tone,
@@ -72,10 +50,6 @@ function BulletListRoot({
   );
 }
 BulletListRoot.displayName = "BulletList";
-
-/* ---------------------------------------------------------------- *
- * Item
- * ---------------------------------------------------------------- */
 
 function BulletListItem({ className, children }: BulletListItemProps) {
   const { tone, Marker } = React.useContext(BulletListContext);
@@ -101,10 +75,6 @@ function BulletListItem({ className, children }: BulletListItemProps) {
   );
 }
 BulletListItem.displayName = "BulletList.Item";
-
-/* ---------------------------------------------------------------- *
- * Compound export
- * ---------------------------------------------------------------- */
 
 export const BulletList = Object.assign(BulletListRoot, {
   Item: BulletListItem,

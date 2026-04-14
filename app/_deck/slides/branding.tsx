@@ -1,47 +1,20 @@
 import { Card } from "../components/card";
 import { Typography } from "../components/typography";
 import { SlideShell } from "../slide-shell";
+import { SLIDE_HEADERS, BRANDING_FEATURES } from "../data/slides";
 import type { SlideProps } from "../types";
-
-type Feature = {
-  title: string;
-  description: string;
-};
-
-const FEATURES: Feature[] = [
-  {
-    title: "Kurumsal Kimlik",
-    description:
-      "Logo, renk paleti ve tipografi yönetimi. Her organizasyon veya platformun kendi görsel diline tam uyum.",
-  },
-  {
-    title: "Özel Alan Adı",
-    description:
-      "auth.platform.com gibi adres desteği. Kullanıcılar her zaman güvendikleri ana adres yapısında kalır.",
-  },
-  {
-    title: "Esnek Tasarım",
-    description:
-      "Web, tablet ve mobil cihazlarda tutarlı oranlar. Her ekran boyutuna uygun, yüksek okunurluk sunan arayüz.",
-  },
-  {
-    title: "Dinamik Özelleştirme",
-    description:
-      "Yazılım güncellemesi (deploy) gerektirmeyen anlık görsel değişimler. Yönetim panelinden tam kontrol noktası.",
-  },
-];
 
 export default function BrandingSlide(p: SlideProps) {
   return (
     <SlideShell
       index={p.index}
       total={p.total}
-      kicker="05 · Marka Deneyimi"
-      title="Merkezi Yönetim, Özelleştirilmiş Kimlik"
-      subtitle="Tek bir altyapı üzerinden; her platform için özgün alan adları, logolar ve görsel diller tanımlanarak kişiselleştirilmiş bir deneyim sunulur."
+      kicker={SLIDE_HEADERS.branding.kicker}
+      title={SLIDE_HEADERS.branding.title}
+      subtitle={SLIDE_HEADERS.branding.subtitle}
     >
       <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
-        {FEATURES.map((f, i) => (
+        {BRANDING_FEATURES.map((f, i) => (
           <Card key={f.title}>
             <Card.Header>
               <Card.Header.Left>

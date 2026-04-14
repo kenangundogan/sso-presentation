@@ -1,12 +1,4 @@
-/**
- * Ordered slide registry. Adding/removing/reordering slides happens here only —
- * the Deck orchestrator imports SLIDES and renders them in this order.
- *
- * Each entry carries:
- *  - component: the slide React component
- *  - label: short navigation label (used by QuickNav popover)
- *  - group: optional logical grouping (Giriş, Framework, Karar, Mimari, Plan)
- */
+
 import type { SlideComponent } from "../types";
 import CoverSlide from "./cover";
 import WhatIsSSOSlide from "./what-is-sso";

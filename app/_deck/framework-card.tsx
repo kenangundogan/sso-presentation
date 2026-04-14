@@ -1,9 +1,23 @@
-import { Check, Minus, Plus, Star } from "lucide-react";
+import { Check, Minus, Plus, Star, X } from "lucide-react";
+import type { FrameworkFeatures } from "./data/frameworks";
 import { AnalysisVerdict } from "./components/analysis-verdict";
 import { Badge } from "./components/badge";
 import { BulletList } from "./components/bullet-list";
 import { Card } from "./components/card";
+import { DescriptionList } from "./components/description-list";
+import { Typography } from "./components/typography";
 import { SlideShell } from "./slide-shell";
+
+export type FrameworkFacts = {
+  firstRelease: string;
+  stars: string;
+  contributors: string;
+  governance: string;
+  cloud: string;
+  apiStyle: string;
+  sdkCount: string;
+  setupDifficulty: string;
+};
 
 export type FrameworkCardProps = {
   index: number;
@@ -13,13 +27,12 @@ export type FrameworkCardProps = {
   stack: string;
   version: string;
   license: string;
-  /** Overall fitness score out of 10 (e.g. 8 → "8/10"). */
   score: number;
   selected?: boolean;
-  /** Marketing site URL — rendered as a "Site" link badge. */
   website?: string;
-  /** Source repository URL — rendered as a "Repo" link badge. */
   repo?: string;
+  facts?: FrameworkFacts;
+  features?: FrameworkFeatures;
   strengths: string[];
   weaknesses: string[];
   verdict: string;
@@ -37,10 +50,85 @@ function ScorePill({ value }: { value: number }) {
   );
 }
 
-/**
- * Reusable "framework analysis" slide template.
- * Used by all 6 framework comparison slides (Keycloak, Authentik, Zitadel, Logto, ...).
- */
+/* ---------------------------------------------------------------- *
+ * Spec Sheet — facts + features in a single Card
+ * ---------------------------------------------------------------- */
+
+const FACT_ITEMS: ReadonlyArray<{ key: keyof FrameworkFacts; label: string }> = [
+  { key: "firstRelease", label: "İlk Yayım" },
+  { key: "stars", label: "GitHub Stars" },
+  { key: "contributors", label: "Contributor" },
+  { key: "governance", label: "Yönetişim" },
+  { key: "cloud", label: "Resmi Bulut" },
+  { key: "apiStyle", label: "API Stili" },
+  { key: "sdkCount", label: "SDK Sayısı" },
+  { key: "setupDifficulty", label: "Kurulum" },
+];
+
+const FEATURE_ITEMS: ReadonlyArray<{ key: keyof FrameworkFeatures; label: string }> = [
+  { key: "openSource", label: "Açık Kaynak" },
+  { key: "selfHosted", label: "Self-Hosted" },
+  { key: "managedCloud", label: "Yönetilen Bulut" },
+  { key: "multiTenancy", label: "Multi-Tenancy" },
+  { key: "oauth", label: "OAuth / OIDC" },
+  { key: "saml", label: "SAML 2.0" },
+  { key: "ldap", label: "LDAP" },
+  { key: "scim", label: "SCIM 2.0" },
+  { key: "mfa", label: "MFA / Passkey" },
+  { key: "sdkNextJs", label: "SDK (Next.js/TS)" },
+  { key: "securityAudit", label: "Güvenlik Denetimi" },
+  { key: "mcp", label: "AI / MCP" },
+];
+
+function SpecSheet({ facts, features }: { facts: FrameworkFacts; features: FrameworkFeatures }) {
+  return (
+    <Card tone="subtle">
+      <Card.Header>
+        <Card.Header.Left>Kimlik Kartı</Card.Header.Left>
+      </Card.Header>
+      <Card.Body className="flex flex-col gap-4">
+        {/* Facts — key/value grid */}
+        <div className="grid grid-cols-1 gap-x-6 gap-y-2 lg:grid-cols-2 xl:grid-cols-4">
+          {FACT_ITEMS.map(({ key, label }) => (
+            <DescriptionList key={key} layout="default">
+              <DescriptionList.Item>
+                <DescriptionList.Item.Key>{label}</DescriptionList.Item.Key>
+                <DescriptionList.Item.Value>
+                  <Typography font="mono" weight="semibold" size="sm">{facts[key]}</Typography>
+                </DescriptionList.Item.Value>
+              </DescriptionList.Item>
+            </DescriptionList>
+          ))}
+        </div>
+
+        {/* Features — inline badge pills */}
+        <div className="flex flex-wrap gap-1.5 border-t border-black/10 pt-3">
+          {FEATURE_ITEMS.map(({ key, label }) => (
+            <span
+              key={key}
+              className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-xs ${features[key]
+                ? "border-black/20 bg-black/[0.04] text-black"
+                : "border-black/8 text-black/30"
+                }`}
+            >
+              {features[key] ? (
+                <Check className="h-3 w-3" strokeWidth={2.5} />
+              ) : (
+                <X className="h-3 w-3" strokeWidth={2} />
+              )}
+              {label}
+            </span>
+          ))}
+        </div>
+      </Card.Body>
+    </Card>
+  );
+}
+
+/* ---------------------------------------------------------------- *
+ * Main Card
+ * ---------------------------------------------------------------- */
+
 export function FrameworkCard(p: FrameworkCardProps) {
   return (
     <SlideShell
@@ -68,7 +156,9 @@ export function FrameworkCard(p: FrameworkCardProps) {
         {p.repo ? <Badge.Link href={p.repo}>Repo</Badge.Link> : null}
       </div>
 
-      <div className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+      {p.facts && p.features && <SpecSheet facts={p.facts} features={p.features} />}
+
+      <div className="mt-5 grid flex-1 grid-cols-1 gap-4 sm:mt-6 md:grid-cols-2 md:gap-6">
         <Card>
           <Card.Header>
             <Card.Header.Left>Güçlü Yönler</Card.Header.Left>

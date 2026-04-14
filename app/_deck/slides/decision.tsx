@@ -1,68 +1,55 @@
 import { Table } from "../components/table";
 import { SlideShell } from "../slide-shell";
 import { Typography } from "../components/typography";
+import { FRAMEWORKS, type FrameworkId } from "../data/frameworks";
 import type { SlideProps } from "../types";
 
 /* ---------------------------------------------------------------- *
- * Frameworks (column order matches the 1/6 → 6/6 slide order)
+ * Build comparison rows from the centralized framework data.
+ * Each row pulls from framework.comparison + framework meta fields.
  * ---------------------------------------------------------------- */
 
-type FrameworkKey =
-  | "keycloak"
-  | "authentik"
-  | "zitadel"
-  | "logto"
-  | "supertokens"
-  | "casdoor";
+type Row = { kriter: string } & Record<FrameworkId, string>;
 
-const FRAMEWORKS: ReadonlyArray<{
-  key: FrameworkKey;
-  label: string;
-  highlight?: boolean;
-}> = [
-    { key: "keycloak", label: "Keycloak" },
-    { key: "authentik", label: "Authentik" },
-    { key: "zitadel", label: "Zitadel" },
-    { key: "logto", label: "Logto" },
-    { key: "supertokens", label: "SuperTokens" },
-    { key: "casdoor", label: "Casdoor" },
-  ];
+function row(kriter: string, getter: (id: FrameworkId) => string): Row {
+  return FRAMEWORKS.reduce(
+    (acc, fw) => ({ ...acc, [fw.id]: getter(fw.id) }),
+    { kriter } as Row,
+  );
+}
 
-/* ---------------------------------------------------------------- *
- * Comparison data — facts cross-checked against each framework slide
- * (kept in sync with the 1/6 – 6/6 deep-dive cards).
- * ---------------------------------------------------------------- */
-
-type Row = { kriter: string } & Record<FrameworkKey, string>;
+function get(id: FrameworkId) {
+  return FRAMEWORKS.find((f) => f.id === id)!;
+}
 
 const COMPARISON_DATA: ReadonlyArray<Row> = [
   // ── Teknoloji ─────────────────────────────
-  { kriter: "Teknoloji / Stack", keycloak: "Java", authentik: "Python / Go", zitadel: "Go", logto: "TypeScript", supertokens: "Java + SDK", casdoor: "Go / React" },
-  { kriter: "İlk Yayım", keycloak: "2014", authentik: "2020", zitadel: "2020", logto: "2022", supertokens: "2020", casdoor: "2021" },
-  { kriter: "API Stili", keycloak: "REST", authentik: "REST", zitadel: "REST + gRPC + connectRPC", logto: "REST", supertokens: "REST (SDK)", casdoor: "REST" },
+  row("Teknoloji / Stack", (id) => get(id).stack),
+  row("İlk Yayım", (id) => get(id).firstRelease),
+  row("API Stili", (id) => get(id).comparison.apiStyle),
 
   // ── Lisans & Yönetişim ────────────────────
-  { kriter: "Lisans Modeli", keycloak: "Apache 2.0", authentik: "MIT + EE", zitadel: "AGPL-3.0", logto: "MPL 2.0", supertokens: "Apache 2.0 + EE", casdoor: "Apache 2.0" },
-  { kriter: "Yönetişim", keycloak: "CNCF Incubating", authentik: "Bağımsız şirket", zitadel: "Bağımsız şirket", logto: "Bağımsız şirket", supertokens: "Bağımsız şirket", casdoor: "Casbin ekosistemi" },
-  { kriter: "Resmi Bulut", keycloak: "Red Hat (ticari)", authentik: "Enterprise tier", zitadel: "zitadel.com", logto: "cloud.logto.io", supertokens: "supertokens.com", casdoor: "casdoor.com" },
+  row("Lisans Modeli", (id) => get(id).license),
+  row("Yönetişim", (id) => get(id).comparison.governance),
+  row("Resmi Bulut", (id) => get(id).comparison.cloud),
 
   // ── Protokol & Yetenek ────────────────────
-  { kriter: "LDAP Federation", keycloak: "Yerleşik", authentik: "Outpost", zitadel: "Var", logto: "Sınırlı", supertokens: "Yok", casdoor: "Server + Client" },
-  { kriter: "RADIUS Protokolü", keycloak: "Yok", authentik: "Outpost", zitadel: "Yok", logto: "Yok", supertokens: "Yok", casdoor: "Server" },
-  { kriter: "SAML 2.0", keycloak: "Yerleşik", authentik: "Yerleşik", zitadel: "Yerleşik", logto: "Yerleşik", supertokens: "v11.3+", casdoor: "Yerleşik" },
-  { kriter: "AI / MCP Entegresi", keycloak: "Partial", authentik: "Yok", zitadel: "Yok", logto: "Var", supertokens: "Yok", casdoor: "Var + A2A" },
+  row("LDAP Federation", (id) => get(id).comparison.ldap),
+  row("RADIUS Protokolü", (id) => get(id).comparison.radius),
+  row("SAML 2.0", (id) => get(id).comparison.saml),
+  row("AI / MCP Entegresi", (id) => get(id).comparison.mcp),
 
   // ── Multi-tenant & Operasyon ──────────────
-  { kriter: "Çoklu Kurum Yapısı", keycloak: "Realm", authentik: "Policy", zitadel: "Instance → Org → Project", logto: "Organizations", supertokens: "App + Tenant", casdoor: "Organization" },
-  { kriter: "Denetim Kaydı", keycloak: "Sınırlı", authentik: "Var", zitadel: "Event-sourced (tam akış)", logto: "Sınırlı", supertokens: "Sınırlı", casdoor: "Webhook events" },
-  { kriter: "Yönetim Arayüzü", keycloak: "Karmaşık", authentik: "Flow editor", zitadel: "Modern", logto: "Çok Başarılı", supertokens: "Sade dashboard", casdoor: "Yoğun (dense)" },
+  row("Çoklu Kurum Yapısı", (id) => get(id).comparison.multiTenancy),
+  row("Denetim Kaydı", (id) => get(id).comparison.auditLog),
+  row("Yönetim Arayüzü", (id) => get(id).comparison.adminUI),
 
   // ── Geliştirici Deneyimi ──────────────────
-  { kriter: "Resmi SDK Sayısı", keycloak: "6", authentik: "—", zitadel: "5", logto: "30+", supertokens: "7", casdoor: "18+" },
-  { kriter: "Kurulum Zorluğu", keycloak: "Zor", authentik: "Orta", zitadel: "Kolay", logto: "Çok Kolay", supertokens: "Orta (3-parça)", casdoor: "Kolay (tek binary)" },
+  row("Resmi SDK Sayısı", (id) => get(id).comparison.sdkCount),
+  row("Kurulum Zorluğu", (id) => get(id).comparison.setupDifficulty),
 
-  // ── Genel Puan (10 kriter: OAuth/OIDC, SAML, LDAP, SCIM, MFA, SDK, Multi-tenancy, Güvenlik Kanıtı, Cloud, MCP)
-  { kriter: "Puan (10 üzerinden)", keycloak: "8", authentik: "8", zitadel: "9", logto: "8", supertokens: "6", casdoor: "8" },
+  // ── Genel Puan
+  row("Puan (10 üzerinden)", (id) => String(get(id).score)),
 ];
 
 export default function DecisionSlide(p: SlideProps) {
@@ -82,38 +69,24 @@ export default function DecisionSlide(p: SlideProps) {
                 Kriter
               </Typography>
             </Table.Cell>
-            {FRAMEWORKS.map(({ key, label, highlight }) => (
-              <Table.Cell key={key} isHead>
-                <Typography
-                  size="sm"
-                  font="mono"
-                  transform="uppercase"
-                  tracking="widest"
-                  weight={highlight ? "bold" : "medium"}
-                >
-                  {label}
+            {FRAMEWORKS.map(({ id, name }) => (
+              <Table.Cell key={id} isHead>
+                <Typography size="sm" font="mono" transform="uppercase" tracking="widest" weight="medium">
+                  {name}
                 </Typography>
               </Table.Cell>
             ))}
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {COMPARISON_DATA.map((row) => (
-            <Table.Row key={row.kriter}>
+          {COMPARISON_DATA.map((r) => (
+            <Table.Row key={r.kriter}>
               <Table.Cell>
-                <Typography size="md" emphasis="muted">
-                  {row.kriter}
-                </Typography>
+                <Typography size="md" emphasis="muted">{r.kriter}</Typography>
               </Table.Cell>
-              {FRAMEWORKS.map(({ key, highlight }) => (
-                <Table.Cell key={key}>
-                  <Typography
-                    size="md"
-                    weight={highlight ? "semibold" : "normal"}
-                    emphasis={highlight ? "default" : "faded"}
-                  >
-                    {row[key]}
-                  </Typography>
+              {FRAMEWORKS.map(({ id }) => (
+                <Table.Cell key={id}>
+                  <Typography size="md" emphasis="faded">{r[id]}</Typography>
                 </Table.Cell>
               ))}
             </Table.Row>

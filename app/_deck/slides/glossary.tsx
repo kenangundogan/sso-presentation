@@ -25,6 +25,8 @@ const TERMS: ReadonlyArray<{ group: string; items: ReadonlyArray<Term> }> = [
       { abbr: "Kerberos", full: "Kerberos Network Authentication", tr: "Ağ Kimlik Doğrulama Protokolü" },
       { abbr: "UMA 2.0", full: "User-Managed Access 2.0", tr: "Kullanıcı Yönetimli Erişim Protokolü" },
       { abbr: "Device Flow", full: "OAuth 2.0 Device Authorization Grant", tr: "Cihaz Yetkilendirme Akışı (TV, IoT)" },
+      { abbr: "DPoP", full: "Demonstration of Proof-of-Possession", tr: "Sahiplik Kanıtı Gösterimi (token hırsızlığını önler)" },
+      { abbr: "JAR", full: "JWT Secured Authorization Request", tr: "JWT ile Güvenli Yetkilendirme Talebi" },
     ],
   },
   {
@@ -43,6 +45,8 @@ const TERMS: ReadonlyArray<{ group: string; items: ReadonlyArray<Term> }> = [
       { abbr: "Impersonation", full: "User Impersonation", tr: "Yöneticinin kullanıcı adına oturum açması" },
       { abbr: "PKCE", full: "Proof Key for Code Exchange", tr: "Kod Değişimi Kanıt Anahtarı" },
       { abbr: "mTLS", full: "Mutual Transport Layer Security", tr: "Karşılıklı İletişim Güvenliği" },
+      { abbr: "Face ID", full: "Facial Recognition Biometrics", tr: "Yüz Tanıma ile Biyometrik Kimlik Doğrulama" },
+      { abbr: "Web3", full: "Decentralized Web (Blockchain)", tr: "Merkezi Olmayan Web (cüzdan tabanlı kimlik)" },
     ],
   },
   {

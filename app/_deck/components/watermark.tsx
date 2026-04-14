@@ -11,7 +11,7 @@ export interface WatermarkProps {
  * Editorial background watermark for slides.
  * Positioned absolute at the corners of its container.
  */
-export function Watermark({ children, className, position = "bottom-right" }: WatermarkProps) {
+export function Watermark({ children, className }: WatermarkProps) {
   return (
     <span
       aria-hidden

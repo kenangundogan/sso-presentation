@@ -12,7 +12,7 @@ import type { SlideProps } from "../types";
 
 function ScreenLogin() {
   return (
-    <div className="w-96 rounded-lg border border-black/15 bg-white p-10">
+    <div className="w-96 rounded-lg border border-black/15 bg-white p-8">
       <div className="mb-4 flex flex-col items-center gap-2">
         <div className="flex h-11 w-11 items-center justify-center rounded-full border border-black/20 font-mono text-sm font-bold">
           S
@@ -49,7 +49,7 @@ function ScreenLogin() {
 
 function ScreenMFA() {
   return (
-    <div className="w-96 rounded-lg border border-black/15 bg-white p-10">
+    <div className="w-96 rounded-lg border border-black/15 bg-white p-8">
       <div className="mb-4 flex items-center gap-3">
         <Shield className="h-5 w-5" strokeWidth={1.75} />
         <span className="font-mono text-xs font-bold uppercase tracking-[0.2em]">İki Faktörlü Doğrulama</span>
@@ -73,7 +73,7 @@ function ScreenMFA() {
 
 function ScreenConsent() {
   return (
-    <div className="w-96 rounded-lg border border-black/15 bg-white p-10">
+    <div className="w-96 rounded-lg border border-black/15 bg-white p-8">
       <div className="mb-4 flex items-center gap-3">
         <KeyRound className="h-5 w-5" strokeWidth={1.75} />
         <span className="font-mono text-xs font-bold uppercase tracking-[0.2em]">Erişim İzni</span>
@@ -104,7 +104,7 @@ function ScreenConsent() {
 
 function ScreenProfile() {
   return (
-    <div className="w-96 rounded-lg border border-black/15 bg-white p-10">
+    <div className="w-96 rounded-lg border border-black/15 bg-white p-8">
       <div className="mb-4 flex items-center gap-3">
         <User className="h-5 w-5" strokeWidth={1.75} />
         <span className="font-mono text-xs font-bold uppercase tracking-[0.2em]">Kullanıcı Profili</span>
@@ -138,7 +138,7 @@ function ScreenProfile() {
 
 function ScreenPasskey() {
   return (
-    <div className="w-96 rounded-lg border border-black/15 bg-white p-10">
+    <div className="w-96 rounded-lg border border-black/15 bg-white p-8">
       <div className="mb-4 flex items-center gap-3">
         <Fingerprint className="h-5 w-5" strokeWidth={1.75} />
         <span className="font-mono text-xs font-bold uppercase tracking-[0.2em]">Passkey ile Giriş</span>
@@ -156,7 +156,7 @@ function ScreenPasskey() {
 
 function ScreenPlatforms() {
   return (
-    <div className="w-96 rounded-lg border border-black/15 bg-white p-10">
+    <div className="w-96 rounded-lg border border-black/15 bg-white p-8">
       <div className="mb-4">
         <span className="font-mono text-xs font-bold uppercase tracking-[0.2em]">Bağlı Platformlar</span>
       </div>
@@ -231,7 +231,7 @@ export default function CoverSlide(_p: SlideProps) {
         }}
       />
 
-      <Watermark>01</Watermark>
+      <Watermark className="left-0 right-auto">01</Watermark>
 
       {CORNER_POSITIONS.map((cls) => (
         <Plus
@@ -296,11 +296,6 @@ export default function CoverSlide(_p: SlideProps) {
             <ScrollColumn screens={COL_A} direction="up" />
             <ScrollColumn screens={COL_B} direction="down" />
           </div>
-        </div>
-
-        {/* Mobile fallback — single static card */}
-        <div className="flex items-center justify-center px-5 pb-10 lg:hidden">
-          <ScreenLogin />
         </div>
       </div>
     </section>

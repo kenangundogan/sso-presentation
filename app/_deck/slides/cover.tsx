@@ -261,7 +261,7 @@ export default function CoverSlide(_p: SlideProps) {
       </header>
 
       {/* Main stage */}
-      <div className="relative z-10 flex flex-1 flex-col lg:flex-row">
+      <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden lg:flex-row lg:items-stretch">
 
         {/* Left — Title area */}
         <div className="flex flex-col justify-center px-5 py-10 sm:px-10 sm:py-12 md:px-16 md:py-16 lg:flex-1">
@@ -287,7 +287,7 @@ export default function CoverSlide(_p: SlideProps) {
         </div>
 
         {/* Right — Scrolling auth screens */}
-        <div className="relative hidden overflow-hidden lg:flex lg:w-[820px] xl:w-[860px]">
+        <div className="relative hidden h-full overflow-hidden lg:flex lg:w-[820px] xl:w-[860px]">
           {/* Fade masks top & bottom */}
           <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-24 bg-gradient-to-b from-white to-transparent" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-24 bg-gradient-to-t from-white to-transparent" />

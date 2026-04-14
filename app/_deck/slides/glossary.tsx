@@ -13,7 +13,7 @@ export default function GlossarySlide(p: SlideProps) {
       title={SLIDE_HEADERS.glossary.title}
       subtitle={SLIDE_HEADERS.glossary.subtitle}
     >
-      <Table minWidth="700px" stickyFirstCol={false}>
+      <Table minWidth="700px">
         <Table.Header>
           <Table.Row divider={false}>
             {["Kısaltma", "Açılım", "Türkçe Karşılık"].map((h) => (

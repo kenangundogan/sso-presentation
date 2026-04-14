@@ -4,7 +4,6 @@ import { cn } from "../../lib/utils";
 export interface TableProps {
   className?: string;
   minWidth?: string;
-  stickyFirstCol?: boolean;
   children: React.ReactNode;
 }
 
@@ -64,36 +63,23 @@ function TableCell({ isHead = false, className, children }: TableCellProps) {
   );
 }
 TableCell.displayName = "Table.Cell";
+
 function TableRoot({
   minWidth = "640px",
-  stickyFirstCol = true,
   className,
   children,
 }: TableProps) {
-
-  const stickyStyles = stickyFirstCol
-    ? cn(
-
-      "[&_thead_tr>*:first-child]:sticky [&_thead_tr>*:first-child]:left-0 [&_thead_tr>*:first-child]:z-20 [&_thead_tr>*:first-child]:bg-black",
-
-      "[&_tbody_tr>*:first-child]:sticky [&_tbody_tr>*:first-child]:left-0 [&_tbody_tr>*:first-child]:z-10 [&_tbody_tr>*:first-child]:bg-white",
-
-      "[&_tbody_tr>*:first-child]:border-r [&_tbody_tr>*:first-child]:border-black/10",
-      "[&_thead_tr>*:first-child]:border-r [&_thead_tr>*:first-child]:border-white/10",
-    )
-    : "";
-
   return (
     <div
       data-embla-no-drag
       className={cn(
-        "-mx-5 flex-1 overflow-x-auto sm:mx-0 sm:rounded sm:border sm:border-black",
+        "flex-1 overflow-x-auto rounded border border-black touch-pan-x",
         className,
       )}
     >
       <div className="inline-block min-w-full align-top border-y border-black sm:border-0">
         <table
-          className={cn("w-full border-collapse", stickyStyles)}
+          className="w-full border-collapse"
           style={{ minWidth }}
         >
           {children}
@@ -110,4 +96,3 @@ export const Table = Object.assign(TableRoot, {
   Row: TableRow,
   Cell: TableCell,
 });
-export const ResponsiveTable = TableRoot;

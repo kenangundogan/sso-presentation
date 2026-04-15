@@ -45,15 +45,12 @@ function SpecSheet({ fw }: { fw: Framework }) {
   const featureEntries = Object.values(fw.features);
 
   return (
-    <Card tone="invert">
-      <Card.Header>
-        <Card.Header.Left>Kimlik Kartı</Card.Header.Left>
-        <Card.Header.Right>
-          <ScorePill value={fw.meta.score.value} />
-        </Card.Header.Right>
-      </Card.Header>
-      <Card.Body className="flex flex-col gap-4">
-        <div className="grid grid-cols-1 gap-x-6 gap-y-2 lg:grid-cols-2 xl:grid-cols-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <Card tone="invert">
+        <Card.Header>
+          <Card.Header.Left>Kimlik Kartı</Card.Header.Left>
+        </Card.Header>
+        <Card.Body className="flex flex-col gap-4">
           {FACT_FIELDS.map((getter) => {
             const field = getter(fw);
             return (
@@ -69,12 +66,17 @@ function SpecSheet({ fw }: { fw: Framework }) {
               </DescriptionList>
             );
           })}
-        </div>
-        <div className="flex flex-wrap gap-1.5 border-t border-white/20 pt-3">
+        </Card.Body>
+      </Card>
+      <Card tone="invert">
+        <Card.Header>
+          <Card.Header.Left>Özellikler</Card.Header.Left>
+        </Card.Header>
+        <div className="grid grid-cols-1 md:grid-cols-2 flex-col gap-4">
           {featureEntries.map((field) => (
             <span
               key={field.en}
-              className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 font-mono text-xs ${field.value
+              className={`inline-flex items-center gap-2 rounded-full border p-2 font-mono text-xs ${field.value
                 ? "border-white/20"
                 : "opacity-50"
                 }`}
@@ -88,8 +90,8 @@ function SpecSheet({ fw }: { fw: Framework }) {
             </span>
           ))}
         </div>
-      </Card.Body>
-    </Card>
+      </Card>
+    </div>
   );
 }
 
@@ -102,6 +104,7 @@ export function FrameworkCard({ index, total, framework: fw }: FrameworkCardProp
       title={fw.meta.name.value}
     >
       <div className="mb-5 flex flex-wrap gap-2 sm:mb-6">
+        <ScorePill value={fw.meta.score.value} />
         <Badge>{fw.meta.stack.tr} · {fw.meta.stack.value}</Badge>
         <Badge>{fw.meta.version.tr} · {fw.meta.version.value}</Badge>
         <Badge>{fw.meta.license.tr} · {fw.meta.license.value}</Badge>

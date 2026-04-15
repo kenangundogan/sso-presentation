@@ -34,12 +34,12 @@ export default function HowSlide(p: SlideProps) {
               <Card key={step.num} className="h-full">
                 <Card.Header divider={false}>
                   <Card.Header.Left>
-                    <Typography size="sm" font="mono" transform="uppercase" emphasis="faded">
+                    <Typography font="mono" transform="uppercase" emphasis="faded">
                       {step.num}
                     </Typography>
                   </Card.Header.Left>
                   <Card.Header.Right>
-                    <Typography size="xs" font="mono" transform="uppercase" emphasis="muted">
+                    <Typography font="mono" transform="uppercase" emphasis="muted">
                       {step.actors}
                     </Typography>
                   </Card.Header.Right>
@@ -64,12 +64,12 @@ export default function HowSlide(p: SlideProps) {
               <Card key={token.name} tone={i === 0 ? "invert" : "default"}>
                 <Card.Header>
                   <Card.Header.Left>
-                    <Typography size="sm" font="mono" transform="uppercase">
+                    <Typography font="mono" transform="uppercase">
                       {token.name}
                     </Typography>
                   </Card.Header.Left>
                   <Card.Header.Right>
-                    <Typography size="xs" font="mono" transform="uppercase" emphasis="muted">
+                    <Typography font="mono" transform="uppercase" emphasis="muted">
                       {token.tag}
                     </Typography>
                   </Card.Header.Right>
@@ -93,7 +93,7 @@ export default function HowSlide(p: SlideProps) {
                 </Card.Body>
 
                 <Card.Footer>
-                  <Typography size="sm" emphasis="muted">
+                  <Typography emphasis="muted">
                     {token.note}
                   </Typography>
                 </Card.Footer>

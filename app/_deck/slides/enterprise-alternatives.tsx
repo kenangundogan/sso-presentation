@@ -58,7 +58,7 @@ export default function EnterpriseAlternativesSlide(p: SlideProps) {
           <Table.Row divider={false}>
             {["Endişe", "Ticari Platform", "Açık Kaynak"].map((h) => (
               <Table.Cell key={h} isHead>
-                <Typography size="sm" font="mono" transform="uppercase" tracking="widest" weight="medium">
+                <Typography font="mono" transform="uppercase" tracking="widest" weight="medium">
                   {h}
                 </Typography>
               </Table.Cell>

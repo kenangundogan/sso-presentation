@@ -62,13 +62,13 @@ export default function DecisionSlide(p: SlideProps) {
         <Table.Header>
           <Table.Row divider={false}>
             <Table.Cell isHead>
-              <Typography size="sm" font="mono" transform="uppercase" tracking="widest" weight="medium">
+              <Typography font="mono" transform="uppercase" tracking="widest" weight="medium">
                 Kriter
               </Typography>
             </Table.Cell>
             {FRAMEWORKS.map((fw) => (
               <Table.Cell key={fw.id} isHead>
-                <Typography size="sm" font="mono" transform="uppercase" tracking="widest" weight="medium">
+                <Typography font="mono" transform="uppercase" tracking="widest" weight="medium">
                   {fw.meta.name.value}
                 </Typography>
               </Table.Cell>

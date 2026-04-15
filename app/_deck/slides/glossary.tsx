@@ -18,7 +18,7 @@ export default function GlossarySlide(p: SlideProps) {
           <Table.Row divider={false}>
             {["Kısaltma", "Açılım", "Türkçe Karşılık"].map((h) => (
               <Table.Cell key={h} isHead>
-                <Typography size="sm" font="mono" transform="uppercase" tracking="widest" weight="medium">
+                <Typography font="mono" transform="uppercase" tracking="widest" weight="medium">
                   {h}
                 </Typography>
               </Table.Cell>

@@ -19,7 +19,7 @@ export default function PlatformsSlide(p: SlideProps) {
           <Table.Row divider={false}>
             {["Platform", "Uygulama Alanı", "Teknoloji", "Entegrasyon", "Öngörülen Süre"].map((h) => (
               <Table.Cell key={h} isHead>
-                <Typography size="sm" font="mono" transform="uppercase" emphasis="muted">
+                <Typography font="mono" transform="uppercase">
                   {h}
                 </Typography>
               </Table.Cell>
